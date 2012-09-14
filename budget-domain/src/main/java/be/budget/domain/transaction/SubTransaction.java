@@ -9,15 +9,16 @@ import be.budget.domain.common.Amount;
 
 @Entity
 public class SubTransaction extends Model {
+
 	@Embedded
 	private Amount amount;
 	@ManyToOne
 	private Transaction transaction;
-	
+
 	public Amount getAmount() {
 		return amount;
 	}
-	
+
 	public Transaction getTransaction() {
 		return transaction;
 	}

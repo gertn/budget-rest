@@ -1,8 +1,6 @@
 package be.budget.web.api;
 
-import static be.budget.common.domain.CommonAssertions.assertThat;
-
-import javax.print.attribute.standard.Media;
+import static org.fest.assertions.Assertions.assertThat;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -29,6 +27,8 @@ public class BudgetResourceTest extends JerseyTest {
 		
 		String wadl = webResource.path("application.wadl").accept(MediaTypes.WADL)
 		        .get(String.class);
+		
+		System.out.println(wadl);
 		
 		Budget defaultBudget = webResource.path("budgets/default").get(Budget.class);
 		
