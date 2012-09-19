@@ -1,0 +1,14 @@
+paths: {
+    specs: '../specs',
+    underscore: 'lib/underscore-min',
+    text: 'lib/text',
+    backbone: 'lib/backbone-min',
+    bootstrap: 'lib/bootstrap.min'
+},
+shim: {
+    'backbone': {
+        deps: ['underscore', 'jquery'],
+        exports: 'Backbone'
+    },
+    'jasmine-jquery': ['jquery']
+}
