@@ -40,11 +40,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.dbmaintain</groupId>
-			<artifactId>dbmaintain</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 		</dependency>
@@ -66,39 +61,6 @@
 					<target>1.6</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.dbmaintain</groupId>
-				<artifactId>dbmaintain-maven-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<databases>
-						<database>
-							<driverClassName>org.hsqldb.jdbc.JDBCDriver</driverClassName>
-							<userName>sa</userName>
-							<password></password>
-							<url>jdbc:hsqldb:hsql://localhost:9001/budget</url>
-							<schemaNames>PUBLIC</schemaNames>
-						</database>
-					</databases>
-					<scriptLocations>${basedir}/dbscripts</scriptLocations>
-					<autoCreateDbMaintainScriptsTable>true</autoCreateDbMaintainScriptsTable>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<goals>
-							<goal>updateDatabase</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.hsqldb</groupId>
-						<artifactId>hsqldb</artifactId>
-						<version>${hsqldb.version}</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
