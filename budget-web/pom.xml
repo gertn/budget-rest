@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>budget</artifactId>
 		<groupId>be.budget</groupId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>budget-web</artifactId>
 	<packaging>war</packaging>
