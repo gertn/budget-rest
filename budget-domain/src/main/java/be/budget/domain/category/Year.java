@@ -51,6 +51,7 @@ public class Year {
 		throw new UnsupportedOperationException();
 	}
 	
+	@SuppressWarnings("unused")
 	private ImmutableMap<Integer, Month> getMonths() {
 		if(months == null){
 			months = ImmutableMap.<Integer, Month>builder()

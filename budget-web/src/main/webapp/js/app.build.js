@@ -12,7 +12,8 @@
     	text: 'lib/text',
     	backbone: 'lib/backbone-min',
     	jquery: "lib/require-jquery",
-    	bootstrap: 'lib/bootstrap.min'
+    	bootstrap: 'lib/bootstrap.min',
+    	i18n: 'lib/i18n'
     },
 
     modules: [

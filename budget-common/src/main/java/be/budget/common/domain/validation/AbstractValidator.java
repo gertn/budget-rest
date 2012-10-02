@@ -4,6 +4,7 @@ import be.budget.common.domain.DomainObject;
 
 public abstract class AbstractValidator<T extends DomainObject> {
 	
+	@SuppressWarnings("unused")
 	private final T instance;
 	private final ValidationContext context;
 	

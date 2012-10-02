@@ -2,5 +2,6 @@
 forge.xml
 .classpath
 .settings/
+.gradle/
 .project
 target/

@@ -1,0 +1,60 @@
+//see dbmaintain-anttasks.xml in dbmaintain-2.4.jar for taskdefs
+//see http://dbmaintain.sourceforge.net/ant-tasks.html for more info
+configurations {
+	db
+}
+dependencies {
+	db group: 'org.dbmaintain', name: 'dbmaintain', version: '2.4'
+	db group: 'org.hsqldb', name: 'hsqldb', version: '2.2.8'
+}
+repositories {
+	mavenCentral()
+}
+
+task updateDB << {
+	ant.taskdef(name: 'updateDatabase', classname: 'org.dbmaintain.launch.ant.UpdateDatabaseAntTask',
+		classpath: configurations.db.asPath)
+	ant.updateDatabase(scriptLocations: 'dbscripts', autoCreateDbMaintainScriptsTable: 'true') {
+			database(driverClassName: 'org.hsqldb.jdbc.JDBCDriver', 
+						userName: 'sa', password: '', 
+						url: 'jdbc:hsqldb:hsql://localhost:9001/budget', 
+						schemaNames: 'PUBLIC')
+		}
+}
+updateDB.description = 'Task that updates the database to the latest version.' 
+
+task dryRun << {
+	ant.taskdef(name: 'checkScriptUpdates', classname: 'org.dbmaintain.launch.ant.CheckScriptUpdatesAntTask',
+		classpath: configurations.db.asPath)
+	ant.checkScriptUpdates(scriptLocations: 'dbscripts', autoCreateDbMaintainScriptsTable: 'true') {
+			database(driverClassName: 'org.hsqldb.jdbc.JDBCDriver', 
+						userName: 'sa', password: '', 
+						url: 'jdbc:hsqldb:hsql://localhost:9001/budget', 
+						schemaNames: 'PUBLIC')
+		}
+}
+dryRun.description = 'Performs a dry run of the database update. May be used to verify if there are any updates or in a test that fails if it appears that an irregular script update was performed.'
+
+task clearDB << {
+	ant.taskdef(name: 'clearDatabase', classname: 'org.dbmaintain.launch.ant.ClearDatabaseAntTask',
+		classpath: configurations.db.asPath)
+	ant.clearDatabase {
+			database(driverClassName: 'org.hsqldb.jdbc.JDBCDriver', 
+						userName: 'sa', password: '', 
+						url: 'jdbc:hsqldb:hsql://localhost:9001/budget', 
+						schemaNames: 'PUBLIC')
+		}
+}
+clearDB.description = 'Task that removes all database items like tables, views etc from the database and empties the DBMAINTAIN_SCRIPTS table.'
+
+task cleanDB << {
+	ant.taskdef(name: 'cleanDatabase', classname: 'org.dbmaintain.launch.ant.CleanDatabaseAntTask',
+		classpath: configurations.db.asPath)
+	ant.cleanDatabase {
+			database(driverClassName: 'org.hsqldb.jdbc.JDBCDriver', 
+						userName: 'sa', password: '', 
+						url: 'jdbc:hsqldb:hsql://localhost:9001/budget', 
+						schemaNames: 'PUBLIC')
+		}
+}
+cleanDB.description = 'Task that removes the data of all database tables, except for the DBMAINTAIN_SCRIPTS table.'

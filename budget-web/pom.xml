@@ -12,8 +12,6 @@
 	<packaging>war</packaging>
 	<properties>
 		<jersey.version>1.9.1</jersey.version>
-		<version.jboss_javaee6_spec>2.0.0.Final</version.jboss_javaee6_spec>
-		<version.jbossas_7>7.1.1.Final</version.jbossas_7>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -67,6 +65,12 @@
 				<artifactId>cachefilter</artifactId>
 				<version>2.0</version>
 			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.jersey-test-framework</groupId>
+				<artifactId>jersey-test-framework-grizzly2</artifactId>
+				<version>1.9.1</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -91,7 +95,7 @@
 		<dependency>
 			<groupId>com.sun.jersey.jersey-test-framework</groupId>
 			<artifactId>jersey-test-framework-grizzly2</artifactId>
-			<version>1.9.1</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
@@ -147,17 +151,18 @@
 					</execution>
 				</executions>
 				<configuration>
-                    <specRunnerTemplate>REQUIRE_JS</specRunnerTemplate>
-                    <jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
-                    <jsTestSrcDir>${project.basedir}/src/test/specs</jsTestSrcDir>
-                    <scriptLoaderPath>lib/require-jquery.js</scriptLoaderPath>
-                    <srcDirectoryName>js</srcDirectoryName>
-                    <specDirectoryName>specs</specDirectoryName>
-                    <customRunnerConfiguration>${project.basedir}/src/test/resources/customJasmineConfig.txt</customRunnerConfiguration>
-                    <specIncludes>
-                        <include>budgetModelSpec.js</include>
-                    </specIncludes>
-                </configuration>
+					<specRunnerTemplate>REQUIRE_JS</specRunnerTemplate>
+					<jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
+					<jsTestSrcDir>${project.basedir}/src/test/specs</jsTestSrcDir>
+					<scriptLoaderPath>lib/require-jquery.js</scriptLoaderPath>
+					<srcDirectoryName>js</srcDirectoryName>
+					<specDirectoryName>specs</specDirectoryName>
+					<customRunnerConfiguration>${project.basedir}/src/test/resources/customJasmineConfig.txt</customRunnerConfiguration>
+					<!-- <webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName> -->
+					<specIncludes>
+						<include>budgetModelSpec.js</include>
+					</specIncludes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>

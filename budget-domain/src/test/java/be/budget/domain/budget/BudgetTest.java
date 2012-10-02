@@ -4,8 +4,6 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
-import be.budget.domain.budget.Budget;
-
 public class BudgetTest {
 
 	@Test

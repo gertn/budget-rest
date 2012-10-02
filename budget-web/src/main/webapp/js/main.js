@@ -1,24 +1,30 @@
+var lang = 'en';
 requirejs.config({
     baseUrl: 'js/app',
     paths: {
     	underscore: '../lib/underscore-min',
     	text: '../lib/text',
     	backbone: '../lib/backbone-min',
-    	bootstrap: '../lib/bootstrap.min'
+    	bootstrap: '../lib/bootstrap.min',
+    	templates: '../../templates',
+    	i18n: "../lib/i18n"
     },
     shim: {
-        'backbone': {
-            //These script dependencies should be loaded before loading
-            //backbone.js
-            deps: ['underscore', 'jquery'],
-            //Once loaded, use the global 'Backbone' as the
-            //module value.
-            exports: 'Backbone'
+        'underscore': {
+            exports: '_'
+        },
+	    'backbone': {
+	    	deps: ['underscore', 'jquery'],
+	    	exports: 'Backbone'
+	    }
+    },
+    config: {
+        i18n: {
+            locale: 'nl'
         }
     }
 });
 
-require(['router'], function(Router) {
-	Router.initialize();
-	
+require(['app_main', 'bootstrap', 'underscore'], function(AppMain, Bootstrap, _){
+	AppMain.init();
 });
