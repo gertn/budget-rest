@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>be.budget</groupId>
 	<artifactId>budget</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>budget-common</module>
@@ -259,34 +259,10 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-scm</artifactId>
-				<version>2.2</version>
-			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>1.8</version>
-			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>1.8</version>
-			</extension>
-		</extensions>
 	</build>
-	<distributionManagement>
-		<site>
-			<id>my.git.server</id>
-			<url>scm:git:git@github.com:gertn/budget-rest.git</url>
-		</site>
-	</distributionManagement>
 	<scm>
 		<connection>scm:git:git@github.com:gertn/budget-rest.git</connection>
 		<url>scm:git:git@github.com:gertn/budget-rest.git</url>
 		<developerConnection>scm:git:git@github.com:gertn/budget-rest.git</developerConnection>
-		<tag>HEAD</tag>
 	</scm>
 </project>
