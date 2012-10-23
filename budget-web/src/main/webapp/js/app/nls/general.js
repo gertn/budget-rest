@@ -1,11 +1,12 @@
 define({
   'root': {
-    about_p: 'Budget rest is an application that uses Backbone.js on the client and uses jersey jax-rs on the server.',
     budget: 'Budget',
-    home: 'home',
-    about: 'about',
-    budget_rest: 'budget-rest',
-    currency: '$'
+    home: 'Home',
+    transactions: 'Transactions',
+    reports: 'Reports',
+    accounts: 'Accounts',
+    categories: 'Categories',
+    _new: 'New'
   },
   'nl': true
 });

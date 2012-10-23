@@ -1,10 +1,8 @@
 package be.budget.domain.common;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 import org.junit.Test;
-
-import be.budget.domain.common.Amount;
 
 public class AmountTest {
 	@Test

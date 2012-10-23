@@ -1,17 +1,14 @@
 package be.budget.domain.budget;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 import org.junit.Test;
 
 public class BudgetTest {
 
 	@Test
-	public void createBudgetShouldSetStateToCreated() {
-		Budget budget = new Budget();
-		assertThat(budget.getState()).isNull();
-		
-		budget.createBudget();
+	public void createNewBudgetShouldSetStateToCreated() {
+		Budget budget = Budget.of(2012, "name", "description");
 		
 		assertThat(budget.getState()).isEqualTo(Budget.BudgetState.CREATED);
 	}

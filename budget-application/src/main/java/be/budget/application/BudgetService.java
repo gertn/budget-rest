@@ -1,13 +1,11 @@
 package be.budget.application;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import be.budget.domain.budget.Budget;
 import be.budget.domain.budget.BudgetRepository;
+import be.budget.domain.budget.Budgets;
 
 @Service
 @Transactional
@@ -16,12 +14,12 @@ public class BudgetService {
 	@Autowired
 	private BudgetRepository budgetRepository;
 	
-	public Budget create(Budget budget) {
-		return budgetRepository.save(budget);
+	public Budgets create(Budgets budgets) {
+		return null;
 	}
 	
-	public List<Budget> findAll() {
-		return budgetRepository.findAll();
+	public Budgets findOne(Long id) {
+		return null;
 	}
 
 }

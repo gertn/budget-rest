@@ -1,4 +1,9 @@
 define({
-	 about_p: 'Budget rest is een applicatie die Backbone.js gebruikt op de client en gebruikt jersey jax-rs op de server.',
-	 currency: '€'
+	budget: 'Budget',
+    home: 'Home',
+    transactions: 'Verrichtingen',
+    reports: 'Rapporten',
+    accounts: 'Rekeningen',
+    categories: 'Rubrieken',
+    _new: 'Nieuw'
 });

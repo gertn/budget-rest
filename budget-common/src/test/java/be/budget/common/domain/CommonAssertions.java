@@ -1,6 +1,6 @@
 package be.budget.common.domain;
 
-import org.fest.assertions.Assertions;
+import org.fest.assertions.api.Assertions;
 
 import be.budget.common.domain.validation.ValidationContext;
 import be.budget.common.domain.validation.ValidationContextAssert;

@@ -11,9 +11,9 @@
 	</appender>
 
 	<!-- 
+	 -->
 	<logger name="org.springframework" level="debug" />
 	<logger name="org.hibernate" level="debug" />
-	 -->
 
 	<root level="info">
 		<appender-ref ref="console" />

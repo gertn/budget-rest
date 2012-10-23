@@ -1,6 +1,7 @@
 package be.budget.application;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.fail;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,11 +25,12 @@ public class BudgetServiceIntegrationTest {
 	private BudgetService budgetService;
 
 	@Test
-	public void shouldBeAbleToCreateBudget(){
-		Budget entity = Budget.createNewBudget(2012, "test");
+	public void shouldBeAbleToCreateBudgets(){
+		/*Budget entity = Budget.of(2012, "test", "testDescription");
 		Budget savedBudget = budgetService.create(entity);
 		
-		assertThat(savedBudget.getId()).isNotNull();
+		assertThat(savedBudget.getId()).isNotNull();*/
+		fail("implement me");
 	}
 
 }

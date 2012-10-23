@@ -2,7 +2,7 @@ package be.budget.common.domain.validation;
 
 import be.budget.common.domain.DomainObject;
 
-public abstract class AbstractValidator<T extends DomainObject> {
+public abstract class AbstractValidation<T extends DomainObject> {
 	
 	@SuppressWarnings("unused")
 	private final T instance;
@@ -10,7 +10,7 @@ public abstract class AbstractValidator<T extends DomainObject> {
 	
 	private String messageKey;
 	
-	public AbstractValidator(T instance, ValidationContext context) {
+	public AbstractValidation(T instance, ValidationContext context) {
 		this.instance = instance;
 		this.context = context;
 	}

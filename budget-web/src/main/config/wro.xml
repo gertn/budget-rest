@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<groups xmlns="http://www.isdc.ro/wro">
+  <group name='dust_templates'>
+    <js>/dust/**</js>
+  </group>
+</groups>

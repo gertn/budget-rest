@@ -2,12 +2,12 @@ package be.budget.common.domain.validation;
 
 import static be.budget.common.domain.CommonAssertions.assertThat;
 
-import org.fest.assertions.GenericAssert;
+import org.fest.assertions.api.AbstractAssert;
 
-public class ValidationContextAssert extends GenericAssert<ValidationContextAssert, ValidationContext> {
+public class ValidationContextAssert extends AbstractAssert<ValidationContextAssert, ValidationContext> {
 
 	public ValidationContextAssert(ValidationContext actual) {
-		super(ValidationContextAssert.class, actual);
+		super(actual, ValidationContextAssert.class);
 	}
 	
 	public ValidationContextAssert contains(Error error) {
@@ -18,7 +18,7 @@ public class ValidationContextAssert extends GenericAssert<ValidationContextAsse
 	
 	public ValidationContextAssert excludes(Error error) {
 		isNotNull();
-		assertThat(actual.getErrors()).excludes(error);
+		assertThat(actual.getErrors()).doesNotContain(error);
 		return this;
 	}
 

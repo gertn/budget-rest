@@ -1,32 +1,49 @@
 package be.budget.domain.budget;
 
+import java.util.Collections;
+import java.util.List;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import com.google.common.collect.Lists;
 
 import be.budget.domain.AbstractEntity;
 
 @Entity
-@XmlRootElement(name = "budgets")
+@Access(AccessType.FIELD)
 public class Budgets extends AbstractEntity {
 
 	@OneToOne
-	private Budget defaultBudget;
+	private Budget selectedBudget;
 
-	public Budgets(Budget defaultBudget) {
-		this.defaultBudget = defaultBudget;
+	@OneToMany
+	private List<Budget> budgets = Lists.newArrayList();
+
+	public void addBudget(Budget budget) {
+		if (selectedBudget == null) {
+			selectedBudget = budget;
+		}
+		budgets.add(budget);
 	}
 
-	@SuppressWarnings("unused")
-	private Budgets() {
+	public List<Budget> getBudgets() {
+		return Collections.unmodifiableList(budgets);
 	}
 
-	public Budget getDefaultBudget() {
-		return defaultBudget;
+	public Budget getSelectedBudget() {
+		return selectedBudget;
 	}
-	
-	public void setDefaultBudget(Budget defaultBudget) {
-		this.defaultBudget = defaultBudget;
+
+	public void setSelectedBudget(Budget budget) {
+		if (!budgets.contains(budget)) {
+			throw new IllegalArgumentException(
+					"budget to set as selected budget is not contained in list of budgets!");
+		}
+		this.selectedBudget = budget;
 	}
 
 }

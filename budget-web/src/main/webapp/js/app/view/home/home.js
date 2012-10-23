@@ -2,18 +2,19 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'view/main/templateNoSidebar',
-  'text!templates/view/home/home_main.html',
-  'text!templates/view/home/home_toolbar.html'
-], function($, _, Backbone, TemplateNoSidebar, homeMainTemplate, homeToolbarTemplate){
+  "i18n!nls/general",
+  'dust'
+], function($, _, Backbone, i18n, Dust){
 
-	var mainHomeView = TemplateNoSidebar.extend({
-		renderMain : function(mainEl) {
-			console.log('renderMain');
-			mainEl.html(homeToolbarTemplate);
-			mainEl.append(homeMainTemplate);
-			return this;
-		}
+	var mainHomeView = Backbone.View.extend({
+		render: function() {
+			  var that = this;
+			  Dust.render( 'home', {i18n : i18n}, function(err, out) {
+				  that.$el.html(out);
+			  });
+		      return this;
+		 }
 	});
-  return mainHomeView;
+		
+	return mainHomeView;
 });
