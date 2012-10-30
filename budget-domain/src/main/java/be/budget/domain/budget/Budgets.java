@@ -5,23 +5,41 @@ import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.google.common.collect.Lists;
-
 import be.budget.domain.AbstractEntity;
+
+import com.google.common.collect.Lists;
 
 @Entity
 @Access(AccessType.FIELD)
 public class Budgets extends AbstractEntity {
+	
+	public static Budgets ofUsername(String username){
+		return new Budgets(username);
+	}
+	
+	@Column(unique=true, nullable=false)
+	private String username;
 
 	@OneToOne
 	private Budget selectedBudget;
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="budgets_id")
 	private List<Budget> budgets = Lists.newArrayList();
+
+	Budgets() {
+	}
+
+	Budgets(String username) {
+		this.username = username;
+	}
 
 	public void addBudget(Budget budget) {
 		if (selectedBudget == null) {
@@ -44,6 +62,14 @@ public class Budgets extends AbstractEntity {
 					"budget to set as selected budget is not contained in list of budgets!");
 		}
 		this.selectedBudget = budget;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

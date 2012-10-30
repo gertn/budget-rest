@@ -37,6 +37,13 @@
 			</dependency>
 			<dependency>
 				<groupId>be.budget</groupId>
+				<artifactId>budget-infrastructure</artifactId>
+				<version>${project.version}</version>
+				<scope>test</scope>
+				<type>test-jar</type>
+			</dependency>
+			<dependency>
+				<groupId>be.budget</groupId>
 				<artifactId>budget-domain</artifactId>
 				<version>${project.version}</version>
 			</dependency>

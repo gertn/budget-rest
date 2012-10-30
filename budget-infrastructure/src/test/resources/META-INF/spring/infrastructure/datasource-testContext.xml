@@ -11,4 +11,6 @@
 
 	<jdbc:embedded-database id="dataSource" type="HSQL" />
 	
+	<bean id="dbSeeder" class="be.budget.infrastructure.test.DBSeeder" />
+	
 </beans>

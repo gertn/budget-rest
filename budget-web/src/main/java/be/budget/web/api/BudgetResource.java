@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sun.jersey.api.Responses;
 
-import be.budget.application.BudgetService;
+import be.budget.application.BudgetsService;
 import be.budget.domain.budget.Budget;
 import be.budget.domain.budget.Budgets;
 
@@ -30,7 +30,7 @@ import be.budget.domain.budget.Budgets;
 public class BudgetResource {
 	
 	@Autowired
-	private BudgetService budgetService;
+	private BudgetsService budgetService;
 	
 	@GET @Path("default")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -47,7 +47,7 @@ public class BudgetResource {
 	@GET 
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Budgets budgets(){
-		return new Budgets();
+		return Budgets.ofUsername("test");
 	}
 	
 	@POST

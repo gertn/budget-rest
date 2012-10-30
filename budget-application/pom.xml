@@ -18,6 +18,12 @@
 			<artifactId>budget-infrastructure</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>be.budget</groupId>
+			<artifactId>budget-infrastructure</artifactId>
+			<scope>test</scope>
+			<type>test-jar</type>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>

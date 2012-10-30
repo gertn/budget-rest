@@ -1,7 +1,9 @@
 package be.budget.application;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.fest.assertions.api.Assertions.fail;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,27 +12,39 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import be.budget.domain.budget.Budget;
+import be.budget.domain.budget.Budgets;
+import be.budget.infrastructure.test.DBSeeder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
     "classpath:META-INF/spring/domain/application-context.xml",
-    "classpath:META-INF/spring/application/datasource-testContext.xml",
+    "classpath:META-INF/spring/infrastructure/datasource-testContext.xml",
     "classpath:META-INF/spring/application/application-context.xml"
 })
 @Transactional
 public class BudgetServiceIntegrationTest {
 	
 	@Autowired
-	private BudgetService budgetService;
-
+	private BudgetsService budgetsService;
+	@Autowired
+	private DBSeeder dbSeeder;
+	
 	@Test
-	public void shouldBeAbleToCreateBudgets(){
-		/*Budget entity = Budget.of(2012, "test", "testDescription");
-		Budget savedBudget = budgetService.create(entity);
+	public void shouldBeAbleToSaveBudgets(){
+		Budgets budgets = Budgets.ofUsername("username");
 		
-		assertThat(savedBudget.getId()).isNotNull();*/
-		fail("implement me");
+		Budgets savedBudgets = budgetsService.save(budgets);
+		
+		assertThat(savedBudgets.getId()).isNotNull();
+	}
+	
+	@Test
+	public void shouldBeAbleToGetBudgets() {
+		dbSeeder.seedData(Budgets.ofUsername(BudgetsService.DEFAULT_USERNAME));
+		
+		Budgets budgets = budgetsService.get();
+		
+		assertThat(budgets).isNotNull();
 	}
 
 }
