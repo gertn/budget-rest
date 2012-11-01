@@ -46,6 +46,13 @@
 				<groupId>be.budget</groupId>
 				<artifactId>budget-domain</artifactId>
 				<version>${project.version}</version>
+				<scope>test</scope>
+				<type>test-jar</type>
+			</dependency>
+			<dependency>
+				<groupId>be.budget</groupId>
+				<artifactId>budget-domain</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>be.budget</groupId>
@@ -276,8 +283,26 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.3.2</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 	<scm>
 		<connection>scm:git:git@github.com:gertn/budget-rest.git</connection>

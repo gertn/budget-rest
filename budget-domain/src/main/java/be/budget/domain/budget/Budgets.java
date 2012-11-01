@@ -8,9 +8,13 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import be.budget.domain.AbstractEntity;
 
@@ -18,6 +22,8 @@ import com.google.common.collect.Lists;
 
 @Entity
 @Access(AccessType.FIELD)
+@XmlRootElement(name = "budgets")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Budgets extends AbstractEntity {
 	
 	public static Budgets ofUsername(String username){
@@ -30,7 +36,7 @@ public class Budgets extends AbstractEntity {
 	@OneToOne
 	private Budget selectedBudget;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="budgets_id")
 	private List<Budget> budgets = Lists.newArrayList();
 

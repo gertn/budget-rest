@@ -2,52 +2,113 @@ package be.budget.web.api;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.request.RequestContextListener;
 
+import be.budget.application.BudgetsService;
 import be.budget.domain.budget.Budget;
+import be.budget.domain.budget.BudgetForTests;
+import be.budget.web.infrastructure.SpringAwareGrizzlyWebTestContainerFactory;
 
+import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.core.header.MediaTypes;
+import com.sun.jersey.spi.spring.container.servlet.SpringServlet;
+import com.sun.jersey.test.framework.AppDescriptor;
 import com.sun.jersey.test.framework.JerseyTest;
+import com.sun.jersey.test.framework.WebAppDescriptor;
+import com.sun.jersey.test.framework.spi.container.TestContainerException;
+import com.sun.jersey.test.framework.spi.container.TestContainerFactory;
 
-@Ignore
 public class BudgetResourceTest extends JerseyTest {
+	
+	@Autowired
+	private BudgetsService budgetsService;
 
-	public BudgetResourceTest() throws Exception {
-		super("be.budget.web.api");
+	@Override
+	protected AppDescriptor configure() {
+		return new WebAppDescriptor.Builder("be.budget.web.api")
+				.contextParam("contextConfigLocation",
+						"classpath:META-INF/spring/web/application-context.xml, " +
+						"classpath:META-INF/spring/domain/application-context.xml, " +
+						"classpath:META-INF/spring/infrastructure/datasource-testContext.xml, " +
+						"classpath:META-INF/spring/application/application-context.xml")
+				.servletClass(SpringServlet.class)
+				.contextPath("test")
+				.contextListenerClass(ContextLoaderListener.class)
+				.requestListenerClass(RequestContextListener.class).build();
+	}
+	
+	protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
+		return new SpringAwareGrizzlyWebTestContainerFactory(this);
 	}
 
 	@Test
-	public void shouldBeAbleToDetermineDefaultBudget() {
+	public void shouldBeAbleToFindAll() throws Exception {
+		Budget budget1 = budgetsService.save(BudgetForTests.createWithDefaults());
+		Budget budget2 = budgetsService.save(BudgetForTests.createWithDefaults());
 		
 		WebResource webResource = resource();
 		
-		String wadl = webResource.path("application.wadl").accept(MediaTypes.WADL)
-		        .get(String.class);
+		GenericType<List<Budget>> genericType = new GenericType<List<Budget>>(){};
+
+		List<Budget> allFound = webResource.path("budgets").get(genericType);
+		assertThat(allFound).containsExactly(budget1, budget2);
+	}
+
+	@Test
+	public void shouldBeAbleToFindById() throws JSONException {
+		Budget budget = budgetsService.save(BudgetForTests.createWithDefaults());
 		
-		System.out.println(wadl);
+		WebResource webResource = resource();
+
+		Budget foundBudget = webResource.path("budgets/" + String.valueOf(budget.getId())).get(Budget.class);
+
+		assertBudget(foundBudget, budget);
 		
-		Budget defaultBudget = webResource.path("budgets/default").get(Budget.class);
-		
-		assertThat(defaultBudget.getName()).isEqualTo("Budget");
-		assertThat(defaultBudget.getYear()).isEqualTo(2012);
 	}
 	
 	@Test
-	public void shouldBeAbleToGetBudgets() throws JSONException {
+	public void shouldBeAbleToUpdateBudget() {
+		Budget budget = budgetsService.save(BudgetForTests.createWithDefaults());
+		budget.setDescription(budget.getDescription() + "A");
+		
 		WebResource webResource = resource();
 		
-		JSONObject responseMsg = new JSONObject(webResource.path("budgets").get(String.class));
-		System.out.println(responseMsg);
+		Budget updatedBudget = webResource.path("budgets/").put(Budget.class, budget);
 		
-		JSONObject defaultBudget = responseMsg.getJSONObject("defaultBudget");
+		assertBudget(updatedBudget, budget);
 		
-		assertThat(defaultBudget).isNotNull();
-		assertThat(defaultBudget.getString("name")).isEqualTo("Budget");
-		assertThat(defaultBudget.getInt("year")).isEqualTo(2013);
+	}
+	
+	@Test
+	public void shouldBeAbleToCreateBudget() {
+		Budget budget = BudgetForTests.createWithDefaults();
+		
+		WebResource webResource = resource();
+		
+		Budget createdBudget = webResource.path("budgets/").post(Budget.class, budget);
+		
+		assertCreatedBudget(createdBudget, budget);
+		
+	}
+
+	private void assertCreatedBudget(Budget actual, Budget expected) {
+		assertThat(actual).isNotNull();
+		assertThat(actual.getName()).isEqualTo(expected.getName());
+		assertThat(actual.getDescription()).isEqualTo(expected.getDescription());
+		assertThat(actual.getYear()).isEqualTo(expected.getYear());
+		assertThat(actual.getId()).isNotNull();
+	}
+
+	private void assertBudget(Budget actual, Budget expected) {
+		assertThat(actual).isNotNull();
+		assertThat(actual.getId()).isEqualTo(expected.getId());
+		assertCreatedBudget(actual, expected);
 	}
 
 }
