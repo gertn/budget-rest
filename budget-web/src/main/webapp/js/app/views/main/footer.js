@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'view/main/nav/navigator',
+  'views/main/nav/navigator',
   "i18n!nls/general",
   'dust'
 ], function($, _, Backbone, Navigator, i18n, Dust){

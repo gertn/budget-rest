@@ -41,27 +41,20 @@ requirejs.config({
 });
 
 require(
-	['i18n!nls/general', 'marionette', 'app', 'underscore', 'dust', 'bootstrap', 'main/router', 'main/controller', 'dust_templates'], 
-	function(i18n, marionette, App, _, Dust, bootstrap, MainRouter, MainController){
+	['i18n!nls/general', 'marionette', 'app', 'underscore', 'dust', 'bootstrap', 'dust_templates', 
+	 'controllers/controller_home', 'controllers/controller_transactions', 'controllers/controller_reports', 
+	 'controllers/controller_accounts', 'controllers/controller_categories'], 
+	function(i18n, marionette, app, _, dust, bootstrap){
 	"use strict";
-	marionette.Renderer.render = function(template, data){
+	
+	marionette.Renderer.render = function(template, data) {
 		var renderedTemplate = '';
-		Dust.render( template, _.extend(data, {i18n : i18n}), function(err, out) {
+		dust.render( template, _.extend(data, {i18n : i18n}), function(err, out) {
 			renderedTemplate = out;
 		});
 		return renderedTemplate;
 	};
 	
-	App.start();
-	
-	var router = new MainRouter({
-		controller : MainController
-	});
-	
-	_.extend(App, {router : router});
-	
-	if (Backbone.history) {
-	    Backbone.history.start();
-	}
-	
+	app.start();
+		
 });

@@ -1,6 +1,6 @@
 define(
-		['marionette','vent','view/main/nav/toolbar','view/main/footer','view/home/home'],
-		function(marionette, vent, MainToolbarView, FooterView, MainHomeView) {
+		['marionette','vent','views/main/nav/toolbar','views/main/footer','views/home/home', 'controllers/router'],
+		function(marionette, vent, MainToolbarView, FooterView, MainHomeView, MainRouter) {
 			"use strict";
 			var app = new marionette.Application();
 			
@@ -13,6 +13,16 @@ define(
 			app.addInitializer(function(){
 				app.header.show(new MainToolbarView());
 				app.footer.show(new FooterView());
+			});
+			
+			app.on("initialize:after", function(options){
+				var router = new MainRouter();
+				
+				_.extend(app, {router : router});
+				
+				if (Backbone.history){
+					Backbone.history.start();
+				}
 			});
 			
 			return app;
