@@ -5,6 +5,7 @@ requirejs.config({
     	underscore: '../lib/underscore-min',
     	text: '../lib/text',
     	backbone: '../lib/backbone-min',
+    	marionette : '../lib/backbone.marionette',
     	bootstrap: '../lib/bootstrap.min',
     	templates: '../../templates',
     	i18n: "../lib/i18n",
@@ -39,6 +40,28 @@ requirejs.config({
     }
 });
 
-require(['app_main', 'underscore', 'bootstrap', 'dust_templates'], function(AppMain, _, dust, bootstrap){
-	AppMain.init();
+require(
+	['i18n!nls/general', 'marionette', 'app', 'underscore', 'dust', 'bootstrap', 'main/router', 'main/controller', 'dust_templates'], 
+	function(i18n, marionette, App, _, Dust, bootstrap, MainRouter, MainController){
+	"use strict";
+	marionette.Renderer.render = function(template, data){
+		var renderedTemplate = '';
+		Dust.render( template, _.extend(data, {i18n : i18n}), function(err, out) {
+			renderedTemplate = out;
+		});
+		return renderedTemplate;
+	};
+	
+	App.start();
+	
+	var router = new MainRouter({
+		controller : MainController
+	});
+	
+	_.extend(App, {router : router});
+	
+	if (Backbone.history) {
+	    Backbone.history.start();
+	}
+	
 });

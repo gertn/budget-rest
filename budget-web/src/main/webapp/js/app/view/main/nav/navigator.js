@@ -2,12 +2,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'event_bus'
-], function($, _, Backbone, eventBus){
+  'marionette',
+  'vent'
+], function($, _, Backbone, marionette, vent){
 
-  var navView = Backbone.View.extend({
+  var navView = marionette.ItemView.extend({
 	  initialize: function() { 
-		  eventBus.on("routeChanged", this.setActiveLink, this);
+		  vent.on("route:changed", this.setActiveLink, this);
 	   },
 	  setActiveLink: function(linkName){
 		  this.$('li').removeClass('active');

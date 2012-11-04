@@ -10,10 +10,10 @@
 			<div class="nav-collapse collapse" id="main-menu">
 				<ul class="nav" id="main-menu-left">
 					<li data-id="home"><a data-id="nav-link" href="#"><i class="icon-home header-icon"></i> {i18n.home}</a> </li>
-					<li data-id="transacties"><a data-id="nav-link" href="#"><i class="icon-retweet header-icon"></i> {i18n.transactions}</a></li>
-					<li data-id="rapporten"><a data-id="nav-link" href="#"><i class="icon-bar-chart header-icon"></i> {i18n.reports}</a></li>
-					<li data-id="rekeningen"><a data-id="nav-link" href="#"><i class="icon-credit-card header-icon"></i> {i18n.accounts}</a></li>
-					<li data-id="rubrieken"><a data-id="nav-link" href="#"><i class="icon-envelope header-icon"></i> {i18n.categories}</a></li>
+					<li data-id="transactions"><a data-id="nav-link" href="#transactions"><i class="icon-retweet header-icon"></i> {i18n.transactions}</a></li>
+					<li data-id="reports"><a data-id="nav-link" href="#"><i class="icon-bar-chart header-icon"></i> {i18n.reports}</a></li>
+					<li data-id="accounts"><a data-id="nav-link" href="#"><i class="icon-credit-card header-icon"></i> {i18n.accounts}</a></li>
+					<li data-id="categories"><a data-id="nav-link" href="#"><i class="icon-envelope header-icon"></i> {i18n.categories}</a></li>
 				</ul>
 				<ul class="nav pull-right" id="main-menu-right">
 					<li data-id="settings"><a data-id="nav-link" href="#"><i class="icon-cog header-icon"></i></a></li>
