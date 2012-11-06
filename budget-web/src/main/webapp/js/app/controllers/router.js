@@ -1,9 +1,20 @@
 define([ 'vent', 'backbone' ], 
 		function(vent, Backbone) {
 	"use strict";
+	
+	function doHomeAction(action) {
+		doAction(action, 'home');
+	};
+	
+	function doAction(action, route) {
+		vent.trigger('action:' + action);
+		vent.trigger('route:changed', route);
+	};
 
 	return Backbone.Router.extend({
 		routes : {
+			'': 'homeAction',
+			'budgets/new': 'newBudgetAction',
 			'transactions': 'transactionsAction',
 			'reports': 'reportsAction',
 			'accounts': 'accountsAction',
@@ -12,8 +23,10 @@ define([ 'vent', 'backbone' ],
 		},
 
 		homeAction : function() {
-			vent.trigger('action:home');
-			vent.trigger('route:changed', 'home');
+			doHomeAction('home');
+		},
+		newBudgetAction : function() {
+			doHomeAction('newBudget');
 		},
 		reportsAction : function() {
 			vent.trigger('action:reports');

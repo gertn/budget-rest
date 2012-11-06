@@ -9,10 +9,17 @@ body, body > header {
 	padding-bottom: 60px;
 }
 
+form {
+	.form-actions {
+		button { margin-right: 5px; }
+	}
+}
+
 #headerToolbar {
 	.brand {
 		font-size: 25px;
 		font-weight: bold;
+		color: @btnInfoBackground;
 	}
 	
 	.navbar-inner {
@@ -22,14 +29,26 @@ body, body > header {
 	#main-menu {
 		li {
 			margin-bottom: -1px;
-			&.active a { 
-				border-top: 3px solid  @btnInfoBackground; 
-				color: @grayDark;
-				background-color: @bodyBackground;
-				.border-top-radius(4px); 
-				&:hover { 
-					color: @btnInfoBackground;
+			&.active {
+				a { 
+					border-top: 3px solid  @btnInfoBackground; 
+					color: @grayDark;
+					background-color: @bodyBackground;
+					.border-top-radius(4px); 
+					&:hover { 
+						color: @btnInfoBackground;
+					}
+					i.icon-home { color: @blue; }
+					i.icon-retweet { color: @green; }
+					i.icon-bar-chart { color: @purple; }
+					i.icon-credit-card { color: @yellow; }
+					i.icon-envelope { color: @red; }
 				}
+				&[data-id='home'] a { border-top: 4px solid  @blue }
+				&[data-id='transactions'] a { border-top: 4px solid  @green }
+				&[data-id='reports'] a { border-top: 4px solid  @purple }
+				&[data-id='accounts'] a { border-top: 4px solid  @yellow }
+				&[data-id='categories'] a { border-top: 4px solid  @red }
 			}
 		}
 		a {
@@ -38,7 +57,7 @@ body, body > header {
 	}
 	
 	a {
-		&:hover, &:focus { color: @btnInfoBackground }
+		&:hover, &:focus { color: @white }
 	}
 }
 

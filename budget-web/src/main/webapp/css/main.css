@@ -4,11 +4,22 @@
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 .header-icon{font-size:28px;}
 body,body>header{padding-bottom:60px;}
-#headerToolbar .brand{font-size:25px;font-weight:bold;}
+form .form-actions button{margin-right:5px;}
+#headerToolbar .brand{font-size:25px;font-weight:bold;color:#5bc0de;}
 #headerToolbar .navbar-inner{padding-top:5px;}
 #headerToolbar #main-menu li{margin-bottom:-1px;}#headerToolbar #main-menu li.active a{border-top:3px solid #5bc0de;color:#333333;background-color:#ffffff;-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}#headerToolbar #main-menu li.active a:hover{color:#5bc0de;}
+#headerToolbar #main-menu li.active a i.icon-home{color:#049cdb;}
+#headerToolbar #main-menu li.active a i.icon-retweet{color:#46a546;}
+#headerToolbar #main-menu li.active a i.icon-bar-chart{color:#7a43b6;}
+#headerToolbar #main-menu li.active a i.icon-credit-card{color:#ffc40d;}
+#headerToolbar #main-menu li.active a i.icon-envelope{color:#9d261d;}
+#headerToolbar #main-menu li.active[data-id='home'] a{border-top:4px solid #049cdb;}
+#headerToolbar #main-menu li.active[data-id='transactions'] a{border-top:4px solid #46a546;}
+#headerToolbar #main-menu li.active[data-id='reports'] a{border-top:4px solid #7a43b6;}
+#headerToolbar #main-menu li.active[data-id='accounts'] a{border-top:4px solid #ffc40d;}
+#headerToolbar #main-menu li.active[data-id='categories'] a{border-top:4px solid #9d261d;}
 #headerToolbar #main-menu a{font-size:19px;}
-#headerToolbar a:hover,#headerToolbar a:focus{color:#5bc0de;}
+#headerToolbar a:hover,#headerToolbar a:focus{color:#ffffff;}
 .sidebar-nav{padding:9px 0;}
 .bs-docs-sidenav{background-color:#FFFFFF;border-radius:6px 6px 6px 6px;box-shadow:0 1px 4px rgba(0, 0, 0, 0.067);padding:0;}
 .bs-docs-sidenav>li:first-child>a{border-radius:6px 6px 0 0;}

@@ -3,9 +3,13 @@ define([
   'backbone'
 ], function(_, Backbone) {
   var budgetModel = Backbone.Model.extend({
-    defaults: {
-      name: 'budget'
-    },
+	urlRoot: "api/budgets",
+	defaults: {
+		"id": null,
+		"name":  "",
+		"year":  "",
+		"state": ""
+	},
     initialize: function(){
     }
     

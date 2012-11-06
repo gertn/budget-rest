@@ -1,5 +1,12 @@
-define(	['marionette'], function(marionette) {
+define(	['marionette', 'require'], function(marionette, require) {
 	return marionette.ItemView.extend({
-		template: 'home'
+		template: 'home',
+		events: {
+			"click #newBudget"    : "newBudget"
+	    },
+	    newBudget: function(event) {
+	    	require('app').router.navigate("budgets/new", true);
+			return false;
+		}
 	});
 });
