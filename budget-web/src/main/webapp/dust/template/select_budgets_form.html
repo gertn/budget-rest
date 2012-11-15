@@ -1,0 +1,7 @@
+<select id="budgets_dropdown" name="budgets_dropdown">
+    <option value="">--select a product line--</option>
+    {#budgets}
+    	<option value="">--select other budget--</option>
+	  	<option value="{id}">{name} - {year}</option>
+	{/budgets}
+</select>

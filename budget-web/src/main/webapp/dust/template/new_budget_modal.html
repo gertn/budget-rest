@@ -1,0 +1,15 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>{i18n.budget.new_budget}</h3>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal">
+		{>input_text _id="name" label="{i18n.properties.name}" help-block="{i18n.budget.name_help}"/} 
+		{>input_text _id="year" label="{i18n.properties.year}" help-block="{i18n.budget.year_help}"/}
+		{>textarea _id="description" label="{i18n.properties.description}" help-block="{i18n.budget.description_help}"/}
+	</form>
+</div>
+<div class="modal-footer">
+	<button id="cancel" data-dismiss="modal" aria-hidden="true" class="btn">{i18n.buttons.cancel}</button>
+	<button id="save" class="btn btn-primary">{i18n.buttons.save}</button>
+</div>

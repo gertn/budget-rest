@@ -32,7 +32,10 @@
 			<param-name>com.sun.jersey.config.property.resourceConfigClass</param-name>
 			<param-value>com.sun.jersey.api.core.PackagesResourceConfig</param-value>
 		</init-param>
-
+		<init-param>
+            <param-name>com.sun.jersey.moxy.config.property.packages</param-name>
+            <param-value>be.budget.domain</param-value>
+        </init-param>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
 			<param-value>be.budget.web.api</param-value>
@@ -99,4 +102,12 @@
 		<url-pattern>*.js</url-pattern>
 	</filter-mapping>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.html</location>
+	</error-page>
 </web-app>

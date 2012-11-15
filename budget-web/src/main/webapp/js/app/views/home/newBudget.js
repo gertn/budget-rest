@@ -1,7 +1,6 @@
-define(	['marionette', 'jquery', 'app'], function(marionette, $, app) {
+define(	['require', 'marionette', 'jquery', 'app'], function(require, marionette, $, app) {
 	return marionette.ItemView.extend({
 		template: 'new_budget_form',
-		id: 'budget_form',
 		events: {
 			"click #save"    : "save",
 			"click #cancel"    : "cancel"
@@ -11,19 +10,27 @@ define(	['marionette', 'jquery', 'app'], function(marionette, $, app) {
 	        name   : '#name',
 	        year : '#year',
 	        description : '#description'
-	      },
+	    },
+	    cancel: function(event) {
+	    	require('app').router.navigate("", true);
+	    	return false;
+	    },
 	    save: function(event) {
 	    	this.model.save({
 				name: this.ui.name.val(),
 				year: this.ui.year.val(),
 				description: this.ui.description.val()
-			});
-	    	require('app').router.navigate("", true);
+			}, {success : function(model, res, options) {
+		          if (res && res.errors) {
+		            //that.renderErrMsg(res.errors);
+		          } else {
+		        	require('app').modal.close();
+		        	require('app').router.navigate("", true);
+		            model.trigger('save-success', model.get('_id'));
+		          }
+		        }
+		});
 			return false;
-		},
-	    cancel: function(event) {
-	    	require('app').router.navigate("", true);
-	    	return false;
-	    }
+		}
 	});
 });

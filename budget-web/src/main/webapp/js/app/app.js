@@ -1,13 +1,14 @@
 define(
-		['marionette','vent','views/main/nav/toolbar','views/main/footer','views/home/home', 'controllers/router'],
-		function(marionette, vent, MainToolbarView, FooterView, MainHomeView, MainRouter) {
+		['marionette','vent','views/main/nav/toolbar','views/main/footer','views/home/home', 'controllers/router', 'views/main/region/modalregion'],
+		function(marionette, vent, MainToolbarView, FooterView, MainHomeView, MainRouter, ModalRegion) {
 			"use strict";
 			var app = new marionette.Application();
 			
 			app.addRegions({
 				header : '#header',
 				main   : '#main',
-				footer : '#footer'
+				footer : '#footer',
+				modal: ModalRegion
 			});
 			
 			app.addInitializer(function(){
@@ -16,13 +17,9 @@ define(
 			});
 			
 			app.on("initialize:after", function(options){
-				var router = new MainRouter();
+				app.router = new MainRouter();
 				
-				_.extend(app, {router : router});
-				
-				if (Backbone.history){
-					Backbone.history.start();
-				}
+				Backbone.history.start();
 			});
 			
 			return app;

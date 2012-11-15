@@ -19,7 +19,7 @@ define([ 'vent', 'backbone' ],
 			'reports': 'reportsAction',
 			'accounts': 'accountsAction',
 			'categories': 'categoriesAction',
-			'*defaults': 'homeAction'
+			'*defaults': 'notFoundAction'
 		},
 
 		homeAction : function() {
@@ -43,6 +43,9 @@ define([ 'vent', 'backbone' ],
 		transactionsAction : function() {
 			vent.trigger('action:transactions');
 			vent.trigger('route:changed', 'transactions');
+		},
+		notFoundAction : function() {
+			window.location.href='404.html';
 		}
 		
 	});

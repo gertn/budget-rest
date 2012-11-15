@@ -18,7 +18,7 @@ import be.budget.domain.AbstractEntity;
 import com.google.common.base.Preconditions;
 
 @Entity
-@XmlRootElement(name = "budget")
+@XmlRootElement(name = "budgets")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Budget extends AbstractEntity {
 

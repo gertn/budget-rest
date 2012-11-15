@@ -3,6 +3,7 @@ requirejs.config({
     baseUrl: 'js/app',
     paths: {
     	underscore: '../lib/underscore-min',
+    	'underscore.string': '../lib/underscore.string',
     	text: '../lib/text',
     	backbone: '../lib/backbone-min',
     	marionette : '../lib/backbone.marionette',
@@ -41,10 +42,10 @@ requirejs.config({
 });
 
 require(
-	['i18n!nls/general', 'marionette', 'app', 'underscore', 'dust', 'bootstrap', 'dust_templates', 
+	['i18n!nls/general', 'marionette', 'app', 'underscore', 'underscore.string', 'dust', 'bootstrap', 'dust_templates', 
 	 'controllers/controller_home', 'controllers/controller_transactions', 'controllers/controller_reports', 
-	 'controllers/controller_accounts', 'controllers/controller_categories'], 
-	function(i18n, marionette, app, _, dust, bootstrap){
+	 'controllers/controller_accounts', 'controllers/controller_categories', 'controllers/controller_errors'], 
+	function(i18n, marionette, app, _, _s, dust, bootstrap){
 	"use strict";
 	
 	marionette.Renderer.render = function(template, data) {

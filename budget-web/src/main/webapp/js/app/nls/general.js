@@ -8,16 +8,22 @@ define({
     categories: 'Categories',
     budget: {
     	new_budget: 'New Budget',
-    	name: 'Name',
     	name_help: 'Enter name above, has to be between 4 and 40 chars.',
-    	year: 'Year',
     	year_help: 'Enter a year above, has to be a number between 1900 and 9999.',
-    	description: 'Description',
     	description_help: 'Enter a description above, maximum 255 chars alowed.'
+    },
+    properties: {
+    	name: 'Name',
+    	year: 'Year',
+    	description: 'Description'
     },
     buttons: {
     	save: 'Save',
     	cancel: 'Cancel'
+    },
+    messages: {
+    	'{javax.validation.constraints.Min.message}': '%(property)s - must be greater than or equal to %(value)s',
+    	'{javax.validation.constraints.Size.message}': '%(property)s - size must be between %(min)s and %(max)s'
     }
   },
   'nl': true
