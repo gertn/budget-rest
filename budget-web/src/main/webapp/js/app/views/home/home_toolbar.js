@@ -1,7 +1,7 @@
 define(	['marionette', 'require', 'jquery', 'vent'], function(marionette, require, $, vent) {
 	"use strict";
 	return marionette.ItemView.extend({
-		template: 'home',
+		template: 'home_toolbar_tpl',
 		onRender: function(){
 			$('#newBudget', this.$el).tooltip();
 		},

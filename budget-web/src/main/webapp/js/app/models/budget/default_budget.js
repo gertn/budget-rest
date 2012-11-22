@@ -4,16 +4,7 @@ define([
 ], function(_, Backbone) {
 	"use strict";
 	var budgetModel = Backbone.Model.extend({
-		urlRoot: "api/budgets",
-		defaults: {
-			"id": null,
-			"name":  "",
-			"year":  "",
-			"state": null
-		},
-		initialize: function(){
-			
-		}
+		urlRoot: "api/budgets/default",
 	});
 	return budgetModel;
 });

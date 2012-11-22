@@ -13,11 +13,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 @Provider
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConstraintViolationExceptionMapper.class);
 
 	static final int UNPROCESSABLE_ENTITY_STATUS = 422;
 	
@@ -25,6 +29,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
 	@Override
 	public Response toResponse(ConstraintViolationException exception) {
+		LOGGER.info("ConstraintViolationException" , exception);
 		Errors errors = new Errors();
 		for (ConstraintViolation<?> violation : exception.getConstraintViolations()) {
 			errors.add(new Error(violation.getMessageTemplate(), violation.getPropertyPath().toString(), extractAttributes(violation)));

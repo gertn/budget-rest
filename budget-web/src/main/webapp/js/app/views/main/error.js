@@ -8,10 +8,12 @@ define([
   'underscore.string',
   'dust'
 ], function($, _, marionette, Backbone, Navigator, i18n, _s, dust){
-	
+	"use strict";
 	return marionette.ItemView.extend({
+		className: 'alert alert alert-error',
 		render: function() {
 			var self = this;
+			//move format errors to error handler
 			var formattedErrors = this.formatErrors(self.options.errors);
 			dust.render( "errors_tpl", {i18n : i18n, data: {errors: formattedErrors}}, function(err, out) {
 				self.$el.append(out);
@@ -19,9 +21,8 @@ define([
 		 },
 		 formatErrors: function(errors){
 			 var self = this,
-			 formattedErrors = [];
-			 
-			 _.each(errors.errors, function(error, key){ 
+			 formattedErrors = [],
+			 addError = function(error, key){ 
 				 var messageKey = i18n.messages[error.messageKey];
 				 var attributes = self.extractAttributes(error);
 				 try {
@@ -30,7 +31,15 @@ define([
 					 messageKey = self.extractProperty(error) + ' - ' + messageKey;
 				 }
 				 formattedErrors[key] = messageKey;
-			});
+			 };
+			 
+			 if(_.isArray(errors.errors)){
+				 _.each(errors.errors, function(error, key) { 
+					addError(error, key);
+				 });
+			 } else if(_.isObject(errors.errors) ) {
+				 addError(errors.errors, 0);
+			 }
 			 
 			 return formattedErrors;
 		 },

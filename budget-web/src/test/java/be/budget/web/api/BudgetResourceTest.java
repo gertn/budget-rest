@@ -49,8 +49,8 @@ public class BudgetResourceTest extends JerseyTest {
 
 	@Test
 	public void shouldBeAbleToFindAll() throws Exception {
-		Budget budget1 = budgetsService.save(BudgetForTests.createWithDefaults());
-		Budget budget2 = budgetsService.save(BudgetForTests.createWithDefaults());
+		Budget budget1 = budgetsService.add(BudgetForTests.createWithDefaults());
+		Budget budget2 = budgetsService.add(BudgetForTests.createWithDefaults());
 		
 		WebResource webResource = resource();
 		

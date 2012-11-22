@@ -8,6 +8,8 @@ define({
     categories: 'Categories',
     budget: {
     	new_budget: 'New Budget',
+    	default_budget: 'Default Budget',
+    	select_budget: 'Select budget',
     	name_help: 'Enter name above, has to be between 4 and 40 chars.',
     	year_help: 'Enter a year above, has to be a number between 1900 and 9999.',
     	description_help: 'Enter a description above, maximum 255 chars alowed.'
@@ -19,11 +21,13 @@ define({
     },
     buttons: {
     	save: 'Save',
-    	cancel: 'Cancel'
+    	cancel: 'Cancel',
+    	set_default: 'Set as default'
     },
     messages: {
     	'{javax.validation.constraints.Min.message}': '%(property)s - must be greater than or equal to %(value)s',
-    	'{javax.validation.constraints.Size.message}': '%(property)s - size must be between %(min)s and %(max)s'
+    	'{javax.validation.constraints.Size.message}': '%(property)s - size must be between %(min)s and %(max)s',
+    	'{{javax.validation.constraints.NotNull.message}}': '%(property)s - is required'
     }
   },
   'nl': true

@@ -5,8 +5,8 @@
 	font-size: 28px;
 }
 
-body, body > header {
-	padding-bottom: 60px;
+body {
+	padding-top: 60px;
 }
 
 form {
@@ -61,6 +61,12 @@ form {
 	}
 }
 
+.toolbarTitle {
+	font-size: 21px;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
 //
 //SIDEBAR NAV
 //
@@ -101,4 +107,10 @@ form {
     margin-right: -6px;
     margin-top: 2px;
     opacity: 0.25;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
 }

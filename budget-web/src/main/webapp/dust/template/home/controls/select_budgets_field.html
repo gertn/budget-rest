@@ -1,0 +1,9 @@
+{>control_group/}
+{<controls}
+	<select id="{_id}" name="budgets_dropdown" class='input-xxlarge'>
+	    <option value="">...</option>
+	    {#budgets}
+		  	<option value="{attributes.id}">{attributes.name} - {attributes.year}</option>
+		{/budgets}
+	</select>
+{/controls}

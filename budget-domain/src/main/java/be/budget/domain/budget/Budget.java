@@ -18,13 +18,13 @@ import be.budget.domain.AbstractEntity;
 import com.google.common.base.Preconditions;
 
 @Entity
-@XmlRootElement(name = "budgets")
+@XmlRootElement(name = "budget")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Budget extends AbstractEntity {
 
 	public static Budget of(Integer year, String name,
 			String description) {
-		return new Budget(year, name, description).createBudget();
+		return new Budget(year, name, description);
 	}
 
 	public static enum BudgetState {
@@ -33,6 +33,7 @@ public class Budget extends AbstractEntity {
 
 	@Max(9999)
 	@Min(1900)
+	@NotNull
 	private Integer year;
 	
 	@NotNull
@@ -87,7 +88,7 @@ public class Budget extends AbstractEntity {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
-	protected Budget createBudget() {
+	public Budget setStateToCreated() {
 		Preconditions.checkState(state == null,
 				"You cannot call createBudget when state is not null! "
 						+ "Current state is: " + state);

@@ -3,7 +3,7 @@
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 .header-icon{font-size:28px;}
-body,body>header{padding-bottom:60px;}
+body{padding-top:60px;}
 form .form-actions button{margin-right:5px;}
 #headerToolbar .brand{font-size:25px;font-weight:bold;color:#5bc0de;}
 #headerToolbar .navbar-inner{padding-top:5px;}
@@ -20,6 +20,7 @@ form .form-actions button{margin-right:5px;}
 #headerToolbar #main-menu li.active[data-id='categories'] a{border-top:4px solid #9d261d;}
 #headerToolbar #main-menu a{font-size:19px;}
 #headerToolbar a:hover,#headerToolbar a:focus{color:#ffffff;}
+.toolbarTitle{font-size:21px;vertical-align:middle;padding-right:10px;}
 .sidebar-nav{padding:9px 0;}
 .bs-docs-sidenav{background-color:#FFFFFF;border-radius:6px 6px 6px 6px;box-shadow:0 1px 4px rgba(0, 0, 0, 0.067);padding:0;}
 .bs-docs-sidenav>li:first-child>a{border-radius:6px 6px 0 0;}
@@ -27,3 +28,4 @@ form .form-actions button{margin-right:5px;}
 .bs-docs-sidenav>li:last-child>a{border-radius:0 0 6px 6px;}
 .bs-docs-sidenav .active .icon-chevron-right,.bs-docs-sidenav .active a:hover .icon-chevron-right{background-image:url("./img/glyphicons-halflings-white.png");opacity:1;}
 .bs-docs-sidenav .icon-chevron-right{float:right;margin-right:-6px;margin-top:2px;opacity:0.25;}
+@media (max-width:979px){body{padding-top:0;}}

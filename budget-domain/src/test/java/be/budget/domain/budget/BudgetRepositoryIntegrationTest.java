@@ -33,8 +33,8 @@ public class BudgetRepositoryIntegrationTest {
 	
 	@Before
 	public void setUp(){
-		budget1 = BudgetForTests.createWithDefaults();
-		budget2 = BudgetForTests.createWithDefaults();
+		budget1 = BudgetForTests.createWithDefaults().setStateToCreated();
+		budget2 = BudgetForTests.createWithDefaults().setStateToCreated();
 	}
 	
 	@Test
@@ -52,6 +52,13 @@ public class BudgetRepositoryIntegrationTest {
 		List<Budget> budgetList = budgetsRepository.findAll();
 		
 		assertThat(budgetList).containsOnly(budget1, budget2);
+	}
+	
+	@Test
+	public void shouldBeAbleToFindAll_EmptyList(){
+		List<Budget> budgetList = budgetsRepository.findAll();
+		
+		assertThat(budgetList).isEmpty();
 	}
 	
 	@Test

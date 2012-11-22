@@ -1,6 +1,7 @@
 define(	['require', 'marionette', 'jquery', 'app'], function(require, marionette, $, app) {
+	"use strict";
 	return marionette.ItemView.extend({
-		template: 'new_budget_form',
+		template: 'new_budget_form_tpl',
 		events: {
 			"click #save"    : "save",
 			"click #cancel"    : "cancel"
@@ -24,7 +25,6 @@ define(	['require', 'marionette', 'jquery', 'app'], function(require, marionette
 		          if (res && res.errors) {
 		            //that.renderErrMsg(res.errors);
 		          } else {
-		        	require('app').modal.close();
 		        	require('app').router.navigate("", true);
 		            model.trigger('save-success', model.get('_id'));
 		          }

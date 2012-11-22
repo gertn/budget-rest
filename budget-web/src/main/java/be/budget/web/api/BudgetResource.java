@@ -41,7 +41,7 @@ public class BudgetResource {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Budget create(Budget budget) {
-		return budgetService.save(budget);
+		return budgetService.add(budget);
 	}
 	
 	@PUT
@@ -49,6 +49,19 @@ public class BudgetResource {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Budget update(Budget budget) {
 		return budgetService.save(budget);
+	}
+	
+	@PUT @Path("/default")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Budget defaultBudget(Budget budget) {
+		return budgetService.setDefaultBudget(budget);
+	}
+	
+	@GET @Path("/default")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Budget defaultBudget() {
+		return budgetService.getDefaultBudget();
 	}
 
 }

@@ -97,6 +97,24 @@ public class BudgetValidationTest {
 						"{javax.validation.constraints.Size.message}")
 				.isSizeViolation(0, 255);
 	}
+	
+	@Test
+	public void yearIsRequired() {
+		Integer nullYear = null;
+		Budget budget = Budget.of(nullYear, "name", "description");
+
+		Set<ConstraintViolation<Budget>> constraintViolations = validator
+				.validate(budget);
+
+		assertThat(constraintViolations).hasSize(1);
+		ConstraintViolation<Budget> violation = constraintViolations.iterator()
+				.next();
+		assertThat(violation)
+				.hasPathName("year")
+				.hasMessageTemplate(
+						"{javax.validation.constraints.NotNull.message}")
+				.isNotNullViolation();
+	}
 
 	@Test
 	public void yearIsTooBig() {

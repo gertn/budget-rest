@@ -6,7 +6,7 @@ define([ 'vent', 'app', 'views/reports/reports' ],
 	vent.on('action:reports', reportsAction);
 
 	function reportsAction() {
-		app.main.show(new MainReportsView());
+		app.showMainContainerInMainLayout(new MainReportsView());
 	};
 
 });

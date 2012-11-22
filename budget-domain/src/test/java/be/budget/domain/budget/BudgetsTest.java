@@ -8,9 +8,8 @@ import org.junit.Test;
 public class BudgetsTest {
 
 	private Budgets budgets;
-	private Budget budget = BudgetTestFactory.of(2012, "name", "description");
-	private Budget budget2 = BudgetTestFactory
-			.of(2013, "name2", "description2");
+	private Budget budget = BudgetForTests.createWithDefaults(1L);
+	private Budget budget2 = BudgetForTests.createWithDefaults(2L);
 
 	@Before
 	public void setUp() throws Exception {
@@ -55,6 +54,16 @@ public class BudgetsTest {
 	public void shouldBeNotAbleToSetSelectedBudgetWhenNotInList() {
 		budgets.addBudget(budget);
 		budgets.setSelectedBudget(budget2);
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void shouldBeNotAbleToSetSelectedBudgetWhenNull() {
+		budgets.setSelectedBudget(null);
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void shouldBeNotAbleToSetSelectedBudgetWhenIdNull() {
+		budgets.setSelectedBudget(Budget.of(2012, "name", "description"));
 	}
 
 }

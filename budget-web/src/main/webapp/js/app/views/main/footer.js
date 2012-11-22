@@ -6,7 +6,7 @@ define([
   "i18n!nls/general",
   'dust'
 ], function($, _, Backbone, Navigator, i18n, Dust){
-	
+	"use strict";
 	var footer = Backbone.View.extend({
 		  render: function() {
 			  var that = this;

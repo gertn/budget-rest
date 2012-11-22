@@ -1,6 +1,6 @@
 define(
-		['marionette','vent','views/main/nav/toolbar','views/main/footer','views/home/home', 'controllers/router', 'views/main/region/modalregion'],
-		function(marionette, vent, MainToolbarView, FooterView, MainHomeView, MainRouter, ModalRegion) {
+		['marionette','vent','views/main/nav/toolbar','views/main/main_layout','views/main/footer','views/home/home', 'controllers/router', 'views/main/region/modalregion'],
+		function(marionette, vent, MainToolbarView, MainLayout, FooterView, MainHomeView, MainRouter, ModalRegion) {
 			"use strict";
 			var app = new marionette.Application();
 			
@@ -11,9 +11,17 @@ define(
 				modal: ModalRegion
 			});
 			
+			app.mainLayout = new MainLayout();
+			
+			app.showMainContainerInMainLayout = function(View){
+				app.mainLayout.messages.reset();
+				app.mainLayout.mainContainer.show(View);
+			};
+			
 			app.addInitializer(function(){
 				app.header.show(new MainToolbarView());
 				app.footer.show(new FooterView());
+				app.main.show(app.mainLayout);
 			});
 			
 			app.on("initialize:after", function(options){

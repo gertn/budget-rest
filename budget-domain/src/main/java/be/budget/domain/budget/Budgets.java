@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import be.budget.domain.AbstractEntity;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 @Entity
@@ -26,8 +26,10 @@ import com.google.common.collect.Lists;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Budgets extends AbstractEntity {
 	
-	public static Budgets ofUsername(String username){
-		return new Budgets(username);
+	public static final String DEFAULT_USERNAME = "DEFAULT";
+
+	public static Budgets create(){
+		return new Budgets(DEFAULT_USERNAME);
 	}
 	
 	@Column(unique=true, nullable=false)
@@ -36,7 +38,7 @@ public class Budgets extends AbstractEntity {
 	@OneToOne
 	private Budget selectedBudget;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="budgets_id")
 	private List<Budget> budgets = Lists.newArrayList();
 
@@ -53,7 +55,7 @@ public class Budgets extends AbstractEntity {
 		}
 		budgets.add(budget);
 	}
-
+	
 	public List<Budget> getBudgets() {
 		return Collections.unmodifiableList(budgets);
 	}
@@ -61,13 +63,12 @@ public class Budgets extends AbstractEntity {
 	public Budget getSelectedBudget() {
 		return selectedBudget;
 	}
-
-	public void setSelectedBudget(Budget budget) {
-		if (!budgets.contains(budget)) {
-			throw new IllegalArgumentException(
-					"budget to set as selected budget is not contained in list of budgets!");
-		}
-		this.selectedBudget = budget;
+	
+	public Budget setSelectedBudget(Budget budget) {
+		Preconditions.checkNotNull(budget);
+		Preconditions.checkNotNull(budget.getId());
+		Preconditions.checkArgument(budgets.contains(budget), "budget to set as selected budget is not contained in list of budgets!");
+		return this.selectedBudget = budget;
 	}
 	
 	public String getUsername() {

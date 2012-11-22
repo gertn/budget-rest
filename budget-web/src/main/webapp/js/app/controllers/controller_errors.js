@@ -7,15 +7,15 @@ define([ 'vent', 'app', 'views/main/error', 'util/ajaxhandler' ],
 
 	function errorHandler(response) {
 		if (response.status === 422) {
-			unprocessableEntityHandler(response.data)
+			unprocessableEntityHandler(response.data);
 		} else if (response.status === 404) {
-			notFoundHandler()
+			notFoundHandler();
 		} else if (response.status === 500) {
 			internalServerErrorHandler();
 		}
 	};
 	function unprocessableEntityHandler(errors) {
-		app.main.show(new MainErrorView({errors: errors}));
+		app.mainLayout.messages.show(new MainErrorView({errors: errors}));
 	};
 	function notFoundHandler() {
 		alert('page not found error!');
