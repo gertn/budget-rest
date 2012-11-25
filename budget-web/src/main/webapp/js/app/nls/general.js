@@ -8,6 +8,7 @@ define({
     categories: 'Categories',
     budget: {
     	new_budget: 'New Budget',
+    	update_budget: 'Update Budget',
     	default_budget: 'Default Budget',
     	select_budget: 'Select budget',
     	name_help: 'Enter name above, has to be between 4 and 40 chars.',

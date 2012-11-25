@@ -14,7 +14,6 @@ define([ 'vent', 'backbone' ],
 	return Backbone.Router.extend({
 		routes : {
 			'': 'homeAction',
-			'budgets/new': 'newBudgetAction',
 			'transactions': 'transactionsAction',
 			'reports': 'reportsAction',
 			'accounts': 'accountsAction',
@@ -24,9 +23,6 @@ define([ 'vent', 'backbone' ],
 
 		homeAction : function() {
 			doHomeAction('home');
-		},
-		newBudgetAction : function() {
-			doHomeAction('newBudget');
 		},
 		reportsAction : function() {
 			vent.trigger('action:reports');

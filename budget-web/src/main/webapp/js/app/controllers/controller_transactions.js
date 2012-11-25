@@ -5,7 +5,7 @@ define([ 'vent', 'app', 'views/transactions/transactions' ],
 	vent.on('action:transactions', transactionsAction);
 
 	function transactionsAction() {
-		app.showMainContainerInMainLayout(new TransactionsView());
+		vent.trigger('app:main:show', {view: new TransactionsView()});
 	};
 
 });

@@ -6,7 +6,7 @@ define([ 'vent', 'app', 'views/accounts/accounts' ],
 	vent.on('action:accounts', accountsAction);
 
 	function accountsAction() {
-		app.showMainContainerInMainLayout(new MainAccountsView());
+		vent.trigger('app:main:show', {view: new MainAccountsView()});
 	};
 
 });

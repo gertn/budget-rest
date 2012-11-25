@@ -44,14 +44,14 @@ public class BudgetResource {
 		return budgetService.add(budget);
 	}
 	
-	@PUT
+	@PUT @Path("{id : \\d+}")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Budget update(Budget budget) {
 		return budgetService.save(budget);
 	}
 	
-	@PUT @Path("/default")
+	@PUT @Path("/default/{id}")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Budget defaultBudget(Budget budget) {

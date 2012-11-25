@@ -1,5 +1,5 @@
-define([ 'vent', 'app', 'views/main/error', 'util/ajaxhandler' ], 
-		function(vent, app, MainErrorView) {
+define([ 'vent', 'views/main/error', 'util/ajaxhandler' ], 
+		function(vent, MainErrorView) {
 	
 	"use strict";
 
@@ -12,16 +12,21 @@ define([ 'vent', 'app', 'views/main/error', 'util/ajaxhandler' ],
 			notFoundHandler();
 		} else if (response.status === 500) {
 			internalServerErrorHandler();
+		} else {
+			unkownErrorHandler();
 		}
 	};
 	function unprocessableEntityHandler(errors) {
-		app.mainLayout.messages.show(new MainErrorView({errors: errors}));
+		vent.trigger('app:messages:show', {view: new MainErrorView({errors: errors})});
 	};
 	function notFoundHandler() {
 		alert('page not found error!');
 	};
 	function internalServerErrorHandler() {
-		alert('Severe server error!');
+		window.location.href='500.html';
+	};
+	function unkownErrorHandler() {
+		alert('Unknown server error!');
 	};
 
 });

@@ -1,9 +1,10 @@
 define([
   'underscore',
-  'backbone'
-], function(_, Backbone) {
+  'backbone',
+  'models/model'
+], function(_, Backbone, Model) {
 	"use strict";
-	var budgetModel = Backbone.Model.extend({
+	var budgetModel = Model.extend({
 		urlRoot: "api/budgets",
 		defaults: {
 			"id": null,

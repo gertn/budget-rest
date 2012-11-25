@@ -32,6 +32,7 @@ public class BudgetsService {
 		return budgets == null ? null : budgets.getSelectedBudget();
 	}
 
+	@Transactional
 	public Budget add(Budget budget) {
 		Budgets budgets = findOrCreateBudgets();
 		budgets.addBudget(budget.setStateToCreated());
@@ -40,8 +41,10 @@ public class BudgetsService {
 		return savedBudget;
 	}
 	
+	@Transactional
 	public Budget save(Budget budget) {
-		return budgetRepository.save(budget);
+		Budget savedBudget = budgetRepository.save(budget);
+		return savedBudget;
 	}
 
 	@Transactional(readOnly=true)

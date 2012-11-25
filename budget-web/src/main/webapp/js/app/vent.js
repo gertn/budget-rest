@@ -1,4 +1,5 @@
 define(['marionette'],function(marionette){
   "use strict";
-  return new marionette.EventAggregator();
+  var vent = new marionette.EventAggregator();
+  return vent;
 });

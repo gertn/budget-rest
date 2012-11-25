@@ -7,17 +7,7 @@ body{padding-top:60px;}
 form .form-actions button{margin-right:5px;}
 #headerToolbar .brand{font-size:25px;font-weight:bold;color:#5bc0de;}
 #headerToolbar .navbar-inner{padding-top:5px;}
-#headerToolbar #main-menu li{margin-bottom:-1px;}#headerToolbar #main-menu li.active a{border-top:3px solid #5bc0de;color:#333333;background-color:#ffffff;-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}#headerToolbar #main-menu li.active a:hover{color:#5bc0de;}
-#headerToolbar #main-menu li.active a i.icon-home{color:#049cdb;}
-#headerToolbar #main-menu li.active a i.icon-retweet{color:#46a546;}
-#headerToolbar #main-menu li.active a i.icon-bar-chart{color:#7a43b6;}
-#headerToolbar #main-menu li.active a i.icon-credit-card{color:#ffc40d;}
-#headerToolbar #main-menu li.active a i.icon-envelope{color:#9d261d;}
-#headerToolbar #main-menu li.active[data-id='home'] a{border-top:4px solid #049cdb;}
-#headerToolbar #main-menu li.active[data-id='transactions'] a{border-top:4px solid #46a546;}
-#headerToolbar #main-menu li.active[data-id='reports'] a{border-top:4px solid #7a43b6;}
-#headerToolbar #main-menu li.active[data-id='accounts'] a{border-top:4px solid #ffc40d;}
-#headerToolbar #main-menu li.active[data-id='categories'] a{border-top:4px solid #9d261d;}
+#headerToolbar #main-menu li{margin-bottom:-1px;}#headerToolbar #main-menu li.active a{border-top:4px solid #5bc0de;color:#333333;background-color:#ffffff;-webkit-border-top-right-radius:4px;-moz-border-radius-topright:4px;border-top-right-radius:4px;-webkit-border-top-left-radius:4px;-moz-border-radius-topleft:4px;border-top-left-radius:4px;}#headerToolbar #main-menu li.active a:hover{color:#5bc0de;}
 #headerToolbar #main-menu a{font-size:19px;}
 #headerToolbar a:hover,#headerToolbar a:focus{color:#ffffff;}
 .toolbarTitle{font-size:21px;vertical-align:middle;padding-right:10px;}

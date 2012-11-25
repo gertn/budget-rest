@@ -7,6 +7,7 @@ define({
     categories: 'Rubrieken',
     budget: {
     	new_budget: 'Nieuw Budget',
+    	update_budget: 'Budget wijzigen',
     	default_budget: 'Standaard Budget',
     	select_budget: 'Selecteer budget',
     	name_help: 'Naam hierboven invullen, moet tussen 4 en 40 karakters liggen.',

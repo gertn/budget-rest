@@ -1,19 +1,22 @@
-define(	['require', 'marionette', 'jquery', 'app'], function(require, marionette, $, app) {
+define(	['require', 'vent', 'marionette', 'jquery', 'app'], function(require, vent, marionette, $, app) {
 	"use strict";
 	return marionette.ItemView.extend({
-		template: 'new_budget_form_tpl',
+		template: 'budget_form_tpl',
 		events: {
 			"click #save"    : "save",
 			"click #cancel"    : "cancel"
 	    },
-	    
+	    onRender: function(){
+	        this.ui.legend.html(this.options.title);
+	    },
 	    ui : {
+	    	legend: 'legend',
 	        name   : '#name',
 	        year : '#year',
 	        description : '#description'
 	    },
 	    cancel: function(event) {
-	    	require('app').router.navigate("", true);
+	    	vent.trigger('action:home');
 	    	return false;
 	    },
 	    save: function(event) {
@@ -25,11 +28,14 @@ define(	['require', 'marionette', 'jquery', 'app'], function(require, marionette
 		          if (res && res.errors) {
 		            //that.renderErrMsg(res.errors);
 		          } else {
-		        	require('app').router.navigate("", true);
-		            model.trigger('save-success', model.get('_id'));
+		            vent.trigger('action:budgetSaved', model.get('id'));
 		          }
 		        }
-		});
+//			, error : function(model, xhr, options) {
+//		          console.log(xhr);
+//		          console.log('yes we did it');
+//			}
+			});
 			return false;
 		}
 	});

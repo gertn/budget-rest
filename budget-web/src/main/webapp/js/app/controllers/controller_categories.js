@@ -6,7 +6,7 @@ define([ 'vent', 'app', 'views/categories/categories' ],
 	vent.on('action:categories', categoriesAction);
 
 	function categoriesAction() {
-		app.showMainContainerInMainLayout(new MainCategoriesView());
+		vent.trigger('app:main:show', {view: new MainCategoriesView()});
 	};
 
 });
