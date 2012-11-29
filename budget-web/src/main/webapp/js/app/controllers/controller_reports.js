@@ -3,10 +3,10 @@ define([ 'vent', 'app', 'views/reports/reports' ],
 	
 	"use strict";
 
-	vent.on('action:reports', reportsAction);
+	vent.on(vent.REPORTS_ACTION, reportsAction);
 
 	function reportsAction() {
-		vent.trigger('app:main:show', {view: new MainReportsView()});
+		vent.trigger(vent.APP_SHOW_MAIN, {view: new MainReportsView()});
 	};
 
 });

@@ -19,7 +19,7 @@ public class TransactionSystemExceptionMapper extends AbstractConstraintViolatio
 		LOGGER.info("TransactionSystemException" , exception);
 		if(exception.getCause() != null && exception.getCause().getCause() instanceof ConstraintViolationException){
 			ConstraintViolationException constraintViolationException = (ConstraintViolationException) exception.getCause().getCause();
-			return createResponseWithErrorsFromConstraintViolation(constraintViolationException);
+			return createResponseWithErrorsFromConstraintViolationException(constraintViolationException);
 		}
 		return Response.status(Status.FORBIDDEN).build();
 	}

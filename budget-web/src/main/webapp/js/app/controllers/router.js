@@ -2,15 +2,6 @@ define([ 'vent', 'backbone' ],
 		function(vent, Backbone) {
 	"use strict";
 	
-	function doHomeAction(action) {
-		doAction(action, 'home');
-	};
-	
-	function doAction(action, route) {
-		vent.trigger('action:' + action);
-		vent.trigger('route:changed', route);
-	};
-
 	return Backbone.Router.extend({
 		routes : {
 			'': 'homeAction',
@@ -22,23 +13,24 @@ define([ 'vent', 'backbone' ],
 		},
 
 		homeAction : function() {
-			doHomeAction('home');
+			vent.trigger(vent.HOME_ACTION);
+			vent.trigger(vent.ROUTE_CHANGED, 'home');
 		},
 		reportsAction : function() {
-			vent.trigger('action:reports');
-			vent.trigger('route:changed', 'reports');
+			vent.trigger( vent.REPORTS_ACTION);
+			vent.trigger(vent.ROUTE_CHANGED, 'reports');
 		},
 		accountsAction : function() {
-			vent.trigger('action:accounts');
-			vent.trigger('route:changed', 'accounts');
+			vent.trigger(vent.ACCOUNTS_ACTION);
+			vent.trigger(vent.ROUTE_CHANGED, 'accounts');
 		},
 		categoriesAction : function() {
-			vent.trigger('action:categories');
-			vent.trigger('route:changed', 'categories');
+			vent.trigger(vent.CATEGORIES_ACTION);
+			vent.trigger(vent.ROUTE_CHANGED, 'categories');
 		},
 		transactionsAction : function() {
-			vent.trigger('action:transactions');
-			vent.trigger('route:changed', 'transactions');
+			vent.trigger(vent.TRANSACTIONS_ACTION);
+			vent.trigger(vent.ROUTE_CHANGED, 'transactions');
 		},
 		notFoundAction : function() {
 			window.location.href='404.html';

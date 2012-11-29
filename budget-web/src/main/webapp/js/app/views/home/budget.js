@@ -16,7 +16,7 @@ define(	['require', 'vent', 'marionette', 'jquery', 'app'], function(require, ve
 	        description : '#description'
 	    },
 	    cancel: function(event) {
-	    	vent.trigger('action:home');
+	    	vent.trigger(vent.HOME_ACTION);
 	    	return false;
 	    },
 	    save: function(event) {
@@ -28,13 +28,9 @@ define(	['require', 'vent', 'marionette', 'jquery', 'app'], function(require, ve
 		          if (res && res.errors) {
 		            //that.renderErrMsg(res.errors);
 		          } else {
-		            vent.trigger('action:budgetSaved', model.get('id'));
+		            vent.trigger(vent.HOME_ACTION_BUDGET_SAVED, model.get('id'));
 		          }
 		        }
-//			, error : function(model, xhr, options) {
-//		          console.log(xhr);
-//		          console.log('yes we did it');
-//			}
 			});
 			return false;
 		}

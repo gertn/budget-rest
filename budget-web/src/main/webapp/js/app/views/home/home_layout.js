@@ -1,6 +1,6 @@
 define(
-		['marionette','vent'],
-		function(marionette, vent) {
+		['marionette'],
+		function(marionette) {
 			"use strict";
 			return  marionette.Layout.extend({
 				  template: 'home_layout_tpl',

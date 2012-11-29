@@ -19,7 +19,7 @@ public abstract class AbstractConstraintViolationExceptionMapper {
 	static final Set<String> EXCLUDED_KEYS = Sets.newHashSet("groups", "message", "payload");
 	static final int UNPROCESSABLE_ENTITY_STATUS = 422;
 
-	protected Response createResponseWithErrorsFromConstraintViolation(
+	protected Response createResponseWithErrorsFromConstraintViolationException(
 			ConstraintViolationException exception) {
 		Errors errors = new Errors();
 		for (ConstraintViolation<?> violation : exception.getConstraintViolations()) {

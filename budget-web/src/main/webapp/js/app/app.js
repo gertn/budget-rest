@@ -13,7 +13,7 @@ define(
 			});
 			
 			app.addInitializer(function(){
-				vent.trigger('app:init:regions');
+				vent.trigger(vent.APP_INIT_REGIONS);
 			});
 			
 			app.on("initialize:after", function(options){

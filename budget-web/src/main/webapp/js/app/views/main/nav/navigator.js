@@ -8,7 +8,7 @@ define([
 
   var navView = marionette.ItemView.extend({
 	  initialize: function() { 
-		  this.bindTo(vent, "route:changed", this.setActiveLink, this);
+		  this.bindTo(vent, vent.ROUTE_CHANGED, this.setActiveLink, this);
 	   },
 	  setActiveLink: function(linkName){
 		  this.$('li').removeClass('active');

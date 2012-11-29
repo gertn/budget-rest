@@ -36,7 +36,7 @@ public class TransactionSystemExceptionMapperTest {
 		
 		mapper.toResponse(transactionSystemException);
 		
-		verify(mapper).createResponseWithErrorsFromConstraintViolation(constraintViolationException);
+		verify(mapper).createResponseWithErrorsFromConstraintViolationException(constraintViolationException);
 	}
 	
 	@Test

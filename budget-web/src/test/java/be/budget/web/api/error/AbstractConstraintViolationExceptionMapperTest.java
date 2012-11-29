@@ -44,7 +44,7 @@ public class AbstractConstraintViolationExceptionMapperTest {
 	@Test
 	public void shouldBeAbleToSetStatusToUnprocessableEntity() {
 		Response response = mapper
-				.createResponseWithErrorsFromConstraintViolation(constraintViolationException);
+				.createResponseWithErrorsFromConstraintViolationException(constraintViolationException);
 
 		assertThat(response.getStatus()).isEqualTo(
 				ConstraintViolationExceptionMapper.UNPROCESSABLE_ENTITY_STATUS);
@@ -53,7 +53,7 @@ public class AbstractConstraintViolationExceptionMapperTest {
 	@Test
 	public void shouldBeAbleToSetContentTypeToApplicationJson() {
 		Response response = mapper
-				.createResponseWithErrorsFromConstraintViolation(constraintViolationException);
+				.createResponseWithErrorsFromConstraintViolationException(constraintViolationException);
 
 		assertThat(response.getMetadata().containsKey(contentType()));
 		assertThat(response.getMetadata().get(contentType()).get(0)).isEqualTo(
@@ -67,7 +67,7 @@ public class AbstractConstraintViolationExceptionMapperTest {
 		constraintViolationException.getConstraintViolations().addAll(
 				contraintViolations);
 		Response response = mapper
-				.createResponseWithErrorsFromConstraintViolation(constraintViolationException);
+				.createResponseWithErrorsFromConstraintViolationException(constraintViolationException);
 
 		assertThat(response.getEntity()).isInstanceOf(Errors.class);
 		Errors errors = (Errors) response.getEntity();

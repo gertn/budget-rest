@@ -14,7 +14,7 @@ define(	['vent', 'marionette', 'jquery','i18n!nls/general'], function(vent, mari
 		 setAsDefault: function() {
 			var selectedId = $('#budgets_dropdown option:selected').val();
 			if(selectedId){
-				vent.trigger('action:defaultBudget', selectedId);
+				vent.trigger(vent.HOME_ACTION_BUDGET_DEFAULT, selectedId);
 			}
 	    	return false;
 		 }

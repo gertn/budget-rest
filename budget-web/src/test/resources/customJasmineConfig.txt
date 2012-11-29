@@ -1,14 +1,39 @@
-paths: {
-    specs: '../specs',
-    underscore: 'lib/underscore-min',
-    text: 'lib/text',
-    backbone: 'lib/backbone-min',
-    bootstrap: 'lib/bootstrap.min'
-},
-shim: {
-    'backbone': {
-        deps: ['underscore', 'jquery'],
-        exports: 'Backbone'
+baseUrl: 'js/app',
+    paths: {
+    	underscore: '../lib/underscore-min',
+    	'underscore.string': '../lib/underscore.string',
+    	text: '../lib/text',
+    	backbone: '../lib/backbone-min',
+    	marionette : '../lib/backbone.marionette',
+    	bootstrap: '../lib/bootstrap.min',
+    	templates: '../../templates',
+    	i18n: "../lib/i18n",
+    	dust: "../lib/dust-core-1.1.1",
+    	dust_templates: "./templates/dust_templates"
+    	
     },
-    'jasmine-jquery': ['jquery']
-}
+    shim: {
+        'underscore': {
+            exports: '_'
+        },
+	    'backbone': {
+	    	deps: ['underscore', 'jquery'],
+	    	exports: 'Backbone'
+	    },
+        'dust': {
+        	exports: 'dust'
+        },
+	    'dust_templates': {
+	    	deps: ['dust'],
+	    	exports: 'dust_templates'
+	    }, 
+	    'bootstrap': {
+        	deps: ['jquery'],
+        	exports: 'bootstrap'
+        }
+    },
+    config: {
+        i18n: {
+            locale: 'nl'
+        }
+    }

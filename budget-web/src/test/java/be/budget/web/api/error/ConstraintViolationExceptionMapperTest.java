@@ -29,7 +29,7 @@ public class ConstraintViolationExceptionMapperTest {
 	public void shouldCallCreateResponseWithErrorsFromConstraintViolation() {
 		mapper.toResponse(constraintViolationException);
 		
-		verify(mapper).createResponseWithErrorsFromConstraintViolation(constraintViolationException);
+		verify(mapper).createResponseWithErrorsFromConstraintViolationException(constraintViolationException);
 	}
 	
 }

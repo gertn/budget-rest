@@ -15,7 +15,7 @@ public class ConstraintViolationExceptionMapper extends AbstractConstraintViolat
 	@Override
 	public Response toResponse(ConstraintViolationException exception) {
 		LOGGER.info("ConstraintViolationException" , exception);
-		return createResponseWithErrorsFromConstraintViolation(exception);
+		return createResponseWithErrorsFromConstraintViolationException(exception);
 	}
 
 }

@@ -221,7 +221,9 @@
 					<customRunnerConfiguration>${project.basedir}/src/test/resources/customJasmineConfig.txt</customRunnerConfiguration>
 					<!-- <webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName> -->
 					<specIncludes>
-						<include>budgetModelSpec.js</include>
+						<include>lib/*.js</include>
+						<include>customMatchers.js</include>
+						<include>**/*Spec.js</include>
 					</specIncludes>
 				</configuration>
 			</plugin>

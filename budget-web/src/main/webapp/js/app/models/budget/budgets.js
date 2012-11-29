@@ -1,10 +1,11 @@
 define([
   'underscore',
   'backbone',
-  'models/budget/budget'
-], function(_, Backbone, BudgetModel) {
+  'models/budget/budget',
+  'models/collection'
+], function(_, Backbone, BudgetModel, Collection) {
 	"use strict";
-	var budgetsModel = Backbone.Collection.extend({
+	var budgetsModel = Collection.extend({
 		url: "api/budgets",
 		model: BudgetModel
 	});

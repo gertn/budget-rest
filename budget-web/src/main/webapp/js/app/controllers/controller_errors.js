@@ -3,7 +3,7 @@ define([ 'vent', 'views/main/error', 'util/ajaxhandler' ],
 	
 	"use strict";
 
-	vent.on('ajax:error', errorHandler);
+	vent.on(vent.AJAX_ERROR, errorHandler);
 
 	function errorHandler(response) {
 		if (response.status === 422) {
@@ -17,7 +17,7 @@ define([ 'vent', 'views/main/error', 'util/ajaxhandler' ],
 		}
 	};
 	function unprocessableEntityHandler(errors) {
-		vent.trigger('app:messages:show', {view: new MainErrorView({errors: errors})});
+		vent.trigger(vent.APP_SHOW_MESSAGES, {view: new MainErrorView({errors: errors})});
 	};
 	function notFoundHandler() {
 		alert('page not found error!');

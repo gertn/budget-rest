@@ -12,12 +12,12 @@ define(	['marionette', 'require', 'jquery', 'vent'], function(marionette, requir
 	    },
 	    newBudget: function(event) {
 	    	$('#newBudget', this.$el).tooltip('hide');
-	    	vent.trigger('action:newBudget');
+	    	vent.trigger(vent.HOME_ACTION_BUDGET_NEW);
 			return false;
 		},
 		updateBudget: function(event) {
 	    	$('#updateBudget', this.$el).tooltip('hide');
-	    	vent.trigger('action:updateBudget');
+	    	vent.trigger(vent.HOME_ACTION_BUDGET_UPDATE);
 	    	return false;
 	    }
 	});

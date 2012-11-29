@@ -3,9 +3,9 @@ define([ 'vent', 'app', 'views/main/nav/toolbar', 'views/main/footer', 'views/ho
 	
 	"use strict";
 
-	vent.on('app:main:show', showMain);
-	vent.on('app:messages:show', showMessages);
-	vent.on('app:init:regions', initRegions);
+	vent.on(vent.APP_SHOW_MAIN, showMain);
+	vent.on(vent.APP_SHOW_MESSAGES, showMessages);
+	vent.on(vent.APP_INIT_REGIONS, initRegions);
 
 	function showMain(options) {
 		if(!options.skipResetMessages){

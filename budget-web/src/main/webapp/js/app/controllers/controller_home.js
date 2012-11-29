@@ -7,20 +7,20 @@ define(
 	
 	"use strict";
 
-	vent.on('action:home', homeAction);
-	vent.on('action:budgetSaved', homeAction);
-	vent.on('action:newBudget', newBudgetAction);
-	vent.on('action:defaultBudget', defaultBudgetAction);
-	vent.on('action:updateBudget', updateBudgetAction);
+	vent.on(vent.HOME_ACTION, homeAction);
+	vent.on(vent.HOME_ACTION_BUDGET_SAVED, homeAction);
+	vent.on(vent.HOME_ACTION_BUDGET_NEW, newBudgetAction);
+	vent.on(vent.HOME_ACTION_BUDGET_DEFAULT, defaultBudgetAction);
+	vent.on(vent.HOME_ACTION_BUDGET_UPDATE, updateBudgetAction);
 	
-	var homeLayout;
+	var homeLayout = {};
 
 	function homeAction() {
 		homeLayout = new HomeLayout();
 		var budgetsModel = new BudgetsModel(),
 		defaultBudgetModel = new DefaultBudgetModel();
 		
-		vent.trigger('app:main:show', {view: homeLayout});
+		vent.trigger(vent.APP_SHOW_MAIN, {view: homeLayout});
 		homeLayout.toolbar.show(new HomeToolbar());
 		
 		budgetsModel.fetch({success: function() {
@@ -32,7 +32,7 @@ define(
 		}});
 	};
 	function newBudgetAction() {
-		vent.trigger('app:main:show', {view: new BudgetView({model: new BudgetModel(), title: i18n.budget.new_budget})});
+		vent.trigger(vent.APP_SHOW_MAIN, {view: new BudgetView({model: new BudgetModel(), title: i18n.budget.new_budget})});
 	};
 	function defaultBudgetAction(selectedId) {
 		new DefaultBudgetModel().save({'id' : selectedId}, {success : function() {
@@ -43,7 +43,7 @@ define(
 		var budgetModel = new BudgetModel({id :  defaultBudgetId()});
 		budgetModel.fetch({success: function() {
 			var view = new BudgetView({model: budgetModel, title: i18n.budget.update_budget});
-			vent.trigger('app:main:show', {view: view});
+			vent.trigger(vent.APP_SHOW_MAIN, {view: view});
 		}});
 	};
 	

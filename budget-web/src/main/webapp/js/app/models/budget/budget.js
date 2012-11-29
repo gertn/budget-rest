@@ -7,14 +7,19 @@ define([
 	var budgetModel = Model.extend({
 		urlRoot: "api/budgets",
 		defaults: {
-			"id": null,
-			"name":  "",
-			"year":  "",
-			"state": null
-		},
-		initialize: function(){
-			
-		}
+			id : null,
+			name:  "",
+			year:  "",
+			description: "",
+			state: null
+		}		
 	});
+	
+	budgetModel.ID = 'id';
+	budgetModel.NAME =  'name';
+	budgetModel.YEAR =  'year';
+	budgetModel.DESCRIPTION = 'description';
+	budgetModel.STATE = 'state';
+	
 	return budgetModel;
 });

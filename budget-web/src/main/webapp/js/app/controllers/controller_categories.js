@@ -3,10 +3,10 @@ define([ 'vent', 'app', 'views/categories/categories' ],
 	
 	"use strict";
 
-	vent.on('action:categories', categoriesAction);
+	vent.on(vent.CATEGORIES_ACTION, categoriesAction);
 
 	function categoriesAction() {
-		vent.trigger('app:main:show', {view: new MainCategoriesView()});
+		vent.trigger(vent.APP_SHOW_MAIN, {view: new MainCategoriesView()});
 	};
 
 });
