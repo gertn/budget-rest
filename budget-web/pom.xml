@@ -171,11 +171,13 @@
 						<phase>generate-sources</phase>
 						<configuration>
 							<tasks>
-								<copy file="${project.basedir}/src/main/build/main.js"
-									overwrite="true" todir="${project.basedir}/src/main/webapp/js" />
+								<copy file="${project.basedir}/src/main/build/requirejs_main_tpl.js"
+									overwrite="true" tofile="${project.basedir}/src/main/webapp/js/main.js" />
+								<copy file="${project.basedir}/src/main/build/require_js_config_tpl.txt"
+									overwrite="true" tofile="${project.basedir}/src/test/resources/customJasmineConfig.txt" />
 								<loadresource property="config.requirejs">
 									<file
-										file="${project.basedir}/src/test/resources/customJasmineConfig.txt" />
+										file="${project.basedir}/src/main/build/require_js_config_tpl.txt" />
 								</loadresource>
 								<replace token="@config@" value="${config.requirejs}"
 									file="${project.basedir}/src/main/webapp/js/main.js">
