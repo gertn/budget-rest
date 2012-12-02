@@ -1,1 +1,0 @@
-node r.js -o ./webapp/js/app.build.js

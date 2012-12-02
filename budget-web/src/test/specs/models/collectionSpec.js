@@ -1,6 +1,13 @@
 define([ 'jquery', 'models/collection', 'util/ajaxhandler' ], function($, Collection, ajaxhandler) {
 	describe("Models - Collection", function() {
 		"use strict";
+		
+		beforeEach(function() {
+			sinon.stub(Backbone, "sync");
+		});
+		afterEach(function() {
+			Backbone.sync.restore();
+		});
 
 		describe('when overriding fetch', function() {
 			

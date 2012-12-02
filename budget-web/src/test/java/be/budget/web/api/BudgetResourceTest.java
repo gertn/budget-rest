@@ -79,7 +79,7 @@ public class BudgetResourceTest extends JerseyTest {
 		
 		WebResource webResource = resource();
 		
-		Budget updatedBudget = webResource.path("budgets/").put(Budget.class, budget);
+		Budget updatedBudget = webResource.path("budgets/" + budget.getId().intValue()).put(Budget.class, budget);
 		
 		assertBudget(updatedBudget, budget);
 		

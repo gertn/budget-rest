@@ -1,6 +1,13 @@
-define([ 'jquery', 'models/model', 'util/ajaxhandler' ], function($, Model, ajaxhandler) {
+define([ 'jquery', 'models/model', 'util/ajaxhandler', 'backbone' ], function($, Model, ajaxhandler, Backbone) {
 	describe("Models - Model", function() {
 		"use strict";
+		
+		beforeEach(function() {
+			sinon.stub(Backbone, "sync");
+		});
+		afterEach(function() {
+			Backbone.sync.restore();
+		});
 
 		describe('when overriding save', function() {
 			
