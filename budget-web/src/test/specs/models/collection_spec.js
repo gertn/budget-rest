@@ -1,4 +1,4 @@
-define([ 'jquery', 'models/collection', 'util/ajaxhandler' ], function($, Collection, ajaxhandler) {
+define([ 'jquery', 'backbone', 'models/collection', 'util/ajaxhandler' ], function($, Backbone, Collection, ajaxhandler) {
 	describe("Models - Collection", function() {
 		"use strict";
 		
@@ -8,6 +8,10 @@ define([ 'jquery', 'models/collection', 'util/ajaxhandler' ], function($, Collec
 		afterEach(function() {
 			Backbone.sync.restore();
 		});
+		
+		it("should be instance of Backbone.Collection", function() {
+		      expect(new Collection()).toBeInstanceOf(Backbone.Collection);
+		 });
 
 		describe('when overriding fetch', function() {
 			

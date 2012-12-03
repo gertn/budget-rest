@@ -288,8 +288,8 @@
 					<!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName> -->
 					<specIncludes>
 						<include>lib/*.js</include>
-						<include>customMatchers.js</include>
-						<include>**/*Spec.js</include>
+						<include>custom_matchers.js</include>
+						<include>**/*_spec.js</include>
 					</specIncludes>
 				</configuration>
 			</plugin>

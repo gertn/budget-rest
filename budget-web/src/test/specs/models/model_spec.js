@@ -8,6 +8,10 @@ define([ 'jquery', 'models/model', 'util/ajaxhandler', 'backbone' ], function($,
 		afterEach(function() {
 			Backbone.sync.restore();
 		});
+		
+		it("should be instance of Backbone.Model", function() {
+		      expect(new Model()).toBeInstanceOf(Backbone.Model);
+		 });
 
 		describe('when overriding save', function() {
 			
