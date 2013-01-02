@@ -1,0 +1,14 @@
+<header id="header" ng-include src="navbarViewUrl()"></header>
+<div id="messages" class="row-fluid" ng-controller="MessagesController">
+	<div class="alert alert-error" ng-show="showMessages()">
+		<button data-dismiss="alert" class="close" type="button">x</button>
+		<p ng-repeat="message in messages">{{message}}</p>
+	</div>
+</div>
+<div ng-include src="mainViewUrl()"></div>
+<hr>
+<footer id="footer">
+	<div>
+		budget app: v<span app-version></span>
+	</div>
+</footer>

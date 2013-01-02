@@ -1,0 +1,39 @@
+<div id="headerToolbar" class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavbarController">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</button>
+			<a data-id="nav-link" class="brand" href="#">{{resourceBundle.budget_title}}</a>
+			<div class="nav-collapse collapse" id="main-menu">
+				<ul class="nav" id="main-menu-left">
+					<li data-id="home" ng-class="{active: routeIsHome()}"><a data-id="nav-link" href="#"><i class="icon-home header-icon"></i> {{resourceBundle.home}}</a> </li>
+					<li data-id="transactions" ng-class="{active: routeIs('/transactions')}"><a data-id="nav-link" href="#/transactions"><i class="icon-retweet header-icon"></i> {{resourceBundle.transactions}}</a></li>
+					<li data-id="reports" ng-class="{active: routeIs('/reports')}"><a data-id="nav-link" href="#/reports"><i class="icon-bar-chart header-icon"></i> {{resourceBundle.reports}}</a></li>
+					<li data-id="accounts" ng-class="{active: routeIs('/accounts')}"><a data-id="nav-link" href="#/accounts"><i class="icon-credit-card header-icon"></i> {{resourceBundle.accounts}}</a></li>
+					<li data-id="categories" ng-class="{active: routeIs('/categories')}"><a data-id="nav-link" href="#/categories"><i class="icon-envelope header-icon"></i> {{resourceBundle.categories}}</a></li>
+				</ul>
+				<ul class="nav pull-right" id="main-menu-right">
+					<li class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"
+                      	data-placement="bottom" data-original-title="{{resourceBundle.language}}" data-tooltip>
+                      	<i class="icon-globe header-icon"></i>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                      	<li><a tabindex="-1" href="#" id="en" ng-click="setLanguage('en', $event)">EN</a></li>
+      					<li><a tabindex="-1" href="#" id ="nl"ng-click="setLanguage('nl', $event)">NL</a></li>
+                      </ul>
+                    </li>
+					<li data-id="settings">
+						<a data-id="nav-link" href="#"
+							data-placement="bottom" data-original-title="{{resourceBundle.settings}}" data-tooltip>
+							<i class="icon-cog header-icon"></i>
+						</a>
+					</li>
+				</ul>
+        	</div>
+		</div>
+	</div>
+</div>

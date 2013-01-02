@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>budget</artifactId>
+		<groupId>be.budget</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>budget-web-backbone</artifactId>
+	<packaging>war</packaging>
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>be.budget</groupId>
+			<artifactId>budget-rest</artifactId>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>JBOSS_NEXUS</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>MAVEN_CENTRAL</id>
+			<url>http://central.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+	<build>
+		<finalName>budget-web-backbone</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<targetPath>${project.basedir}/src/main/webapp</targetPath>
+				<directory>src/main/filtered-webapp-resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<configuration>
+							<tasks>
+								<copy file="${project.basedir}/src/main/build/requirejs_main_tpl.js"
+									overwrite="true" tofile="${project.basedir}/src/main/webapp/js/main.js" />
+								<copy file="${project.basedir}/src/main/build/require_js_config_tpl.txt"
+									overwrite="true" tofile="${project.basedir}/src/test/resources/customJasmineConfig.txt" />
+								<loadresource property="config.requirejs">
+									<file
+										file="${project.basedir}/src/main/build/require_js_config_tpl.txt" />
+								</loadresource>
+								<replace token="@config@" value="${config.requirejs}"
+									file="${project.basedir}/src/main/webapp/js/main.js">
+								</replace>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.3.0</version>
+				<configuration>
+					<sourceDirectory>${project.basedir}/src/main/webapp/less</sourceDirectory>
+					<outputDirectory>${project.basedir}/src/main/webapp/css</outputDirectory>
+					<compress>true</compress>
+					<force>true</force>
+					<includes>
+						<include>bootstrap/bootstrap.less</include>
+						<include>bootstrap/responsive.less</include>
+						<include>main.less</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>ro.isdc.wro4j</groupId>
+				<artifactId>wro4j-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<phase>generate-resources</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<targetGroups>dust_templates</targetGroups>
+					<minimize>false</minimize>
+					<wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+					<wroFile>${basedir}/src/main/config/wro.xml</wroFile>
+					<extraConfigFile>${basedir}/src/main/config/wro.properties</extraConfigFile>
+					<destinationFolder>${basedir}/src/main/webapp/js/app/templates</destinationFolder>
+					<contextFolder>${basedir}/src/main/webapp</contextFolder>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.mcheely</groupId>
+				<artifactId>requirejs-maven-plugin</artifactId>
+				<version>1.0.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>optimize</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- path to optimizer json config file -->
+					<configFile>
+						${basedir}/src/main/build/build-maven.js
+					</configFile>
+					<!-- optional path to optimizer executable -->
+					<optimizerFile>
+						${basedir}/src/main/build/r.js
+					</optimizerFile>
+					<!-- whether or not to process config with maven filters -->
+					<filterConfig>
+						true
+					</filterConfig>
+					<!-- Skip requirejs optimization if true -->
+					<skip>
+						false
+					</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.searls</groupId>
+				<artifactId>jasmine-maven-plugin</artifactId>
+				<version>1.2.0.0</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<specRunnerTemplate>REQUIRE_JS</specRunnerTemplate>
+					<jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
+					<jsTestSrcDir>${project.basedir}/src/test/specs</jsTestSrcDir>
+					<scriptLoaderPath>lib/require-jquery.js</scriptLoaderPath>
+					<srcDirectoryName>js</srcDirectoryName>
+					<specDirectoryName>specs</specDirectoryName>
+					<customRunnerConfiguration>${project.basedir}/src/test/resources/customJasmineConfig.txt</customRunnerConfiguration>
+					<!--<webDriverClassName>org.openqa.selenium.firefox.FirefoxDriver</webDriverClassName> -->
+					<specIncludes>
+						<include>lib/*.js</include>
+						<include>custom_matchers.js</include>
+						<include>**/*_spec.js</include>
+					</specIncludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<extensions>false</extensions>
+				<configuration>
+					<!-- <warSourceDirectory>${basedir}/src/main/webapp-build</warSourceDirectory> -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warName>budget-backbone</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
