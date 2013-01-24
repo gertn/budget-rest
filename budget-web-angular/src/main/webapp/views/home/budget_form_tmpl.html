@@ -1,26 +1,25 @@
-<form class="form-horizontal">
+<form name="budgetForm" class="form-horizontal">
 	<fieldset>
 		<legend ng-bind="title"></legend>
-		<div class="control-group">
-			<label for="name" class="control-label" ng-bind="resourceBundle.properties.name"></label>
-			<div class="controls">
-				<input type="text" ng-model="budget.name" ng-disabled="readOnlyMode" id="name">
-			</div>
-		</div>
-		<div class="control-group">
-			<label for="year" class="control-label" ng-bind="resourceBundle.properties.year"></label>
-			<div class="controls">
-				<input type="text" ng-model="budget.year" ng-disabled="readOnlyMode" id="year">
-			</div>
-		</div>
-		<div class="control-group">
-			<label for="description" class="control-label" ng-bind="resourceBundle.properties.description"></label>
-			<div class="controls">
-				<textarea ng-model="budget.description" ng-disabled="readOnlyMode" rows="3" id="description"></textarea>
-			</div>
-		</div>
+		<!-- <input-field type="text" id="name" label="resourceBundle.properties.name" valid="budgetForm.name.$valid" 
+			disabled="readOnlyMode"
+			ng-model="budget.name"
+			error_label="{{resourceBundle.budget.name_help}}">
+        </input-field> -->
+		<control-group for-attr="name" label="resourceBundle.properties.name">
+          <input type="text" name="name" ng-model="budget.name" ng-disabled="readOnlyMode" id="name" required></input>
+          <span class="help-block" ng-show="!readOnlyMode" ng-bind="resourceBundle.budget.name_help"></span>
+        </control-group>
+		<control-group for-attr="year" label="resourceBundle.properties.year">
+			<input type="text" name="year" ng-model="budget.year" ng-disabled="readOnlyMode" id="year" required></input>
+			<span class="help-block" ng-show="!readOnlyMode" ng-bind="resourceBundle.budget.year_help"></span>
+		</control-group>
+		<control-group for-attr="description" label="resourceBundle.properties.description">
+			<textarea name="description" ng-model="budget.description" ng-disabled="readOnlyMode" rows="3" id="description"></textarea>
+			<span class="help-block" ng-show="!readOnlyMode" ng-bind="resourceBundle.budget.description_help"></span>
+		</control-group>
 		<div class="form-actions" ng-hide="readOnlyMode">
-			<button id="save" type="submit" ng-click="save()" class="btn btn-primary" ng-bind="resourceBundle.buttons.save"></button>
+			<button id="save" type="submit" ng-disabled="!budgetForm.$valid" ng-click="save()" class="btn btn-primary" ng-bind="resourceBundle.buttons.save"></button>
 			<button id="cancel" type="button" ng-click="cancel()" class="btn" ng-bind="resourceBundle.buttons.cancel"></button>
 		</div>
 	</fieldset>

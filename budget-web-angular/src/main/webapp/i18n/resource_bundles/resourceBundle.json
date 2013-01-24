@@ -27,8 +27,8 @@
 		"set_default": "Set as default"
 	},
     "messages": {
-    	"{javax.validation.constraints.Min.message}": "%(property)s - must be greater than or equal to %(value)s",
-    	"{javax.validation.constraints.Size.message}": "%(property)s - size must be between %(min)s and %(max)s",
-    	"{{javax.validation.constraints.NotNull.message}}": "%(property)s - is required"
+    	"{javax.validation.constraints.Min.message}": "{{property}} - must be greater than or equal to {{value}}",
+    	"{javax.validation.constraints.Size.message}": "{{property}} - size must be between {{min}} and {{max}}",
+    	"{javax.validation.constraints.NotNull.message}": "{{property}} - is required"
     }
 }

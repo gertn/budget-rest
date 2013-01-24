@@ -27,8 +27,8 @@
     	"set_default": "Zet als standaard"
     },
     "messages": {
-    	"{javax.validation.constraints.Min.message}": "%(property)s - moet groter of gelijk zijn aan %(value)s",
-    	"{javax.validation.constraints.Size.message}": "%(property)s - moet liggen tussen %(min)s en %(max)s",
-    	"{javax.validation.constraints.NotNull.message}": "%(property)s - is verplicht"
+    	"{javax.validation.constraints.Min.message}": "{{property}} - moet groter of gelijk zijn aan {{value}}",
+    	"{javax.validation.constraints.Size.message}": "{{property}} - moet liggen tussen {{min}} en {{max}}",
+    	"{javax.validation.constraints.NotNull.message}": "{{property}} - is verplicht"
     }
 }

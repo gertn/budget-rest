@@ -1,6 +1,6 @@
 'use strict';
 
-budgetApp.controller('MessagesController', function HomeController($scope, $location) {
+budgetApp.controller('MessagesController', function MessagesController($scope, $location) {
 	$scope.messages =  [ ];
 	
 	$scope.showMessages = function() {
